@@ -77,6 +77,13 @@ CDB::           http://cr.yp.to/cdb.html
 * Jens Wille <mailto:jens.wille@uni-koeln.de>
 
 
+== CREDITS
+
+This project was inspired by ruby-cdb[https://github.com/mbj/ruby-cdb] and
+cdb-full[https://rubygems.org/gems/cdb-full]. The code organization, especially the
+extension part, was modeled after libxml-ruby[https://github.com/xml4r/libxml-ruby].
+
+
 == LICENSE AND COPYRIGHT
 
 Copyright (C) 2012 University of Cologne,
