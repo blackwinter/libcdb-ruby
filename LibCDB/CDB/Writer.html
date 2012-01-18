@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class LibCDB::CDB::Writer - libcdb-ruby Application documentation (v0.0.1)</title>
+
+<link type="text/css" media="screen" href="../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../../index.html">Home</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/libcdb/version.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="../../Object.html">Object</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-i-5B-5D-3D">#[]=</a>
+    
+    <li><a href="#method-i-add">#add</a>
+    
+    <li><a href="#method-i-close">#close</a>
+    
+    <li><a href="#method-i-closed-3F">#closed?</a>
+    
+    <li><a href="#method-i-insert">#insert</a>
+    
+    <li><a href="#method-i-replace">#replace</a>
+    
+    <li><a href="#method-i-store">#store</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../../COPYING.html">COPYING</a>
+  
+    <li class="file"><a href="../../ChangeLog.html">ChangeLog</a>
+  
+    <li class="file"><a href="../../README.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../LibCDB.html">LibCDB</a>
+  
+    <li><a href="../../LibCDB/CDB.html">LibCDB::CDB</a>
+  
+    <li><a href="../../LibCDB/CDB/Reader.html">LibCDB::CDB::Reader</a>
+  
+    <li><a href="../../LibCDB/CDB/Version.html">LibCDB::CDB::Version</a>
+  
+    <li><a href="../../LibCDB/CDB/Writer.html">LibCDB::CDB::Writer</a>
+  
+    <li><a href="../../Object.html">Object</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class LibCDB::CDB::Writer</h1>
+
+  <div id="description" class="description">
+    
+<p>The writer for creating <a href="../CDB.html">CDB</a> files. See <a
+href="Reader.html">Reader</a> for reading them.</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new(io) &rarr; aWriter
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="Writer.html">Writer</a> instance to interface with
+<code>io</code>. <code>io</code> must be opened for writing
+(<code>w</code>); in addition, it must be opened for read-write
+(<code>w+</code>) if <a href="Writer.html#method-i-insert">insert</a> or <a
+href="Writer.html#method-i-replace">replace</a> are to be used.</p>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+rcdb_writer_initialize(VALUE self, VALUE io) {
+  struct cdb_make *cdbm = NULL;
+  rb_io_t *fptr;
+
+  Check_Type(io, T_FILE);
+  GetOpenFile(io, fptr);
+
+  rb_io_check_writable(fptr);
+  rb_iv_set(self, &quot;@io&quot;, io);
+  rb_iv_set(self, &quot;closed&quot;, Qfalse);
+
+  Get_CDB_Writer(self, cdbm);
+
+  if (cdb_make_start(cdbm, GetFileFD(fptr)) == -1) {
+    rb_sys_fail(0);
+  }
+
+  if (lseek(cdb_fileno(cdbm), 0, SEEK_SET) == -1)  {
+    rb_sys_fail(0);
+  }
+
+  return self;
+}</pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-5B-5D-3D" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">[]=</span><span
+            class="method-args">(*args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Writer.html#method-i-replace">replace</a>
+        </div>
+        
+      </div><!-- 5B-5D-3D-method -->
+
+    
+      <div id="method-i-add" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">add</span><span
+            class="method-args">(*args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Writer.html#method-i-store">store</a>
+        </div>
+        
+      </div><!-- add-method -->
+
+    
+      <div id="method-i-close" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            close &rarr; nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Closes <em>writer</em>, as well as the underlying IO object.</p>
+          
+
+          
+          <div class="method-source-code" id="close-source">
+            <pre>static VALUE
+rcdb_writer_close(VALUE self) {
+  struct cdb_make *cdbm = NULL;
+
+  if (RTEST(rcdb_writer_closed_p(self))) {
+    return Qnil;
+  }
+
+  Get_CDB_Writer(self, cdbm);
+  rb_iv_set(self, &quot;closed&quot;, Qtrue);
+
+  if (cdb_make_finish(cdbm) == -1) {
+    rb_sys_fail(0);
+  }
+
+  rb_io_close(rb_iv_get(self, &quot;@io&quot;));
+
+  return Qnil;
+}</pre>
+          </div><!-- close-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- close-method -->
+
+    
+      <div id="method-i-closed-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            closed? &rarr; true | false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Whether <em>writer</em> is closed.</p>
+          
+
+          
+          <div class="method-source-code" id="closed-3F-source">
+            <pre>static VALUE
+rcdb_writer_closed_p(VALUE self) {
+  return rb_attr_get(self, rb_intern(&quot;closed&quot;));
+}</pre>
+          </div><!-- closed-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- closed-3F-method -->
+
+    
+      <div id="method-i-insert" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            insert(key, val) &rarr; writer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            insert(key, [val, ...]) &rarr; writer
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            insert([key, ...]) &rarr; writer
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            insert({ key =&gt; val, ... }) &rarr; writer
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Stores records in the database and returns <em>writer</em>. Records will
+only be inserted if they don’t already exist in the database.</p>
+
+<p>The arguments are treated the same as in <a
+href="Writer.html#method-i-store">store</a>, so duplicate keys <em>in the
+arguments</em> will produce multiple records.</p>
+          
+
+          
+          <div class="method-source-code" id="insert-source">
+            <pre>static VALUE
+rcdb_writer_insert(int argc, VALUE *argv, VALUE self) {
+  return rcdb_writer_put(argc, argv, self, CDB_PUT_INSERT);
+}</pre>
+          </div><!-- insert-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- insert-method -->
+
+    
+      <div id="method-i-replace" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            replace(key, val) &rarr; writer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            replace(key, [val, ...]) &rarr; writer
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            replace([key, ...]) &rarr; writer
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            replace({ key =&gt; val, ... }) &rarr; writer
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Stores records in the database and returns <em>writer</em>. Records with
+duplicate keys are replaced.</p>
+
+<p>The arguments are treated the same as in <a
+href="Writer.html#method-i-store">store</a>, so duplicate keys <em>in the
+arguments</em> will produce multiple records.</p>
+          
+
+          
+          <div class="method-source-code" id="replace-source">
+            <pre>static VALUE
+rcdb_writer_replace(int argc, VALUE *argv, VALUE self) {
+  return rcdb_writer_put(argc, argv, self, CDB_PUT_REPLACE);
+}</pre>
+          </div><!-- replace-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Writer.html#method-i-5B-5D-3D">[]=</a>
+        </div>
+        
+
+        
+      </div><!-- replace-method -->
+
+    
+      <div id="method-i-store" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            store(key, val) &rarr; writer
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            store(key, [val, ...]) &rarr; writer
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            store([key, ...]) &rarr; writer
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            store({ key =&gt; val, ... }) &rarr; writer
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Stores records in the database and returns <em>writer</em>. Records are
+stored unconditionally, so duplicate keys will produce multiple records.</p>
+
+<p>If a single key/value pair is given, a record with key <code>key</code> and
+value <code>val</code> is created; if <code>val</code> is an array, one
+record per value is created for <code>key</code>. If an array of keys is
+given, one record per key with an empty value is created. If a hash of
+key/value pairs is given, one record per key/value pair is created; the
+same logic as for a single key/value pair applies.</p>
+          
+
+          
+          <div class="method-source-code" id="store-source">
+            <pre>static VALUE
+rcdb_writer_store(int argc, VALUE *argv, VALUE self) {
+  return rcdb_writer_put(argc, argv, self, CDB_PUT_ADD);
+}</pre>
+          </div><!-- store-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Writer.html#method-i-add">add</a>
+        </div>
+        
+
+        
+      </div><!-- store-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

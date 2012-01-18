@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class LibCDB::CDB::Reader - libcdb-ruby Application documentation (v0.0.1)</title>
+
+<link type="text/css" media="screen" href="../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../../index.html">Home</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/libcdb/version.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="../../Object.html">Object</a>
+  
+</nav>
+
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">Enumerable</span>
+  
+  
+  </ul>
+</nav>
+
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-i-5B-5D">#[]</a>
+    
+    <li><a href="#method-i-close">#close</a>
+    
+    <li><a href="#method-i-closed-3F">#closed?</a>
+    
+    <li><a href="#method-i-dump">#dump</a>
+    
+    <li><a href="#method-i-each">#each</a>
+    
+    <li><a href="#method-i-each_dump">#each_dump</a>
+    
+    <li><a href="#method-i-each_key">#each_key</a>
+    
+    <li><a href="#method-i-each_value">#each_value</a>
+    
+    <li><a href="#method-i-empty-3F">#empty?</a>
+    
+    <li><a href="#method-i-fetch">#fetch</a>
+    
+    <li><a href="#method-i-fetch_all">#fetch_all</a>
+    
+    <li><a href="#method-i-fetch_first">#fetch_first</a>
+    
+    <li><a href="#method-i-fetch_last">#fetch_last</a>
+    
+    <li><a href="#method-i-get">#get</a>
+    
+    <li><a href="#method-i-has_key-3F">#has_key?</a>
+    
+    <li><a href="#method-i-has_value-3F">#has_value?</a>
+    
+    <li><a href="#method-i-include-3F">#include?</a>
+    
+    <li><a href="#method-i-key">#key</a>
+    
+    <li><a href="#method-i-key-3F">#key?</a>
+    
+    <li><a href="#method-i-keys">#keys</a>
+    
+    <li><a href="#method-i-length">#length</a>
+    
+    <li><a href="#method-i-member-3F">#member?</a>
+    
+    <li><a href="#method-i-rget">#rget</a>
+    
+    <li><a href="#method-i-size">#size</a>
+    
+    <li><a href="#method-i-to_a">#to_a</a>
+    
+    <li><a href="#method-i-to_h">#to_h</a>
+    
+    <li><a href="#method-i-total">#total</a>
+    
+    <li><a href="#method-i-value-3F">#value?</a>
+    
+    <li><a href="#method-i-values">#values</a>
+    
+    <li><a href="#method-i-values_at">#values_at</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../../COPYING.html">COPYING</a>
+  
+    <li class="file"><a href="../../ChangeLog.html">ChangeLog</a>
+  
+    <li class="file"><a href="../../README.html">README</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../LibCDB.html">LibCDB</a>
+  
+    <li><a href="../../LibCDB/CDB.html">LibCDB::CDB</a>
+  
+    <li><a href="../../LibCDB/CDB/Reader.html">LibCDB::CDB::Reader</a>
+  
+    <li><a href="../../LibCDB/CDB/Version.html">LibCDB::CDB::Version</a>
+  
+    <li><a href="../../LibCDB/CDB/Writer.html">LibCDB::CDB::Writer</a>
+  
+    <li><a href="../../Object.html">Object</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class LibCDB::CDB::Reader</h1>
+
+  <div id="description" class="description">
+    
+<p>The reader for reading <a href="../CDB.html">CDB</a> files. See <a
+href="Writer.html">Writer</a> for creating them.</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            new(io) &rarr; aReader
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="Reader.html">Reader</a> instance to interface with
+<code>io</code>. <code>io</code> must be opened for reading
+(<code>r</code>).</p>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre>static VALUE
+rcdb_reader_initialize(VALUE self, VALUE io) {
+  struct cdb *cdb = NULL;
+  rb_io_t *fptr;
+
+  Check_Type(io, T_FILE);
+  GetOpenFile(io, fptr);
+
+  rb_io_check_readable(fptr);
+  rb_iv_set(self, &quot;@io&quot;, io);
+  rb_iv_set(self, &quot;closed&quot;, Qfalse);
+
+  Get_CDB_Reader(self, cdb);
+
+  if (cdb_init(cdb, GetFileFD(fptr)) == -1) {
+    rb_sys_fail(0);
+  }
+
+  return self;
+}</pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-5B-5D" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">[]</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Reader.html#method-i-fetch_first">fetch_first</a>
+        </div>
+        
+      </div><!-- 5B-5D-method -->
+
+    
+      <div id="method-i-close" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            close &rarr; nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Closes <em>reader</em>, as well as the underlying IO object.</p>
+          
+
+          
+          <div class="method-source-code" id="close-source">
+            <pre>static VALUE
+rcdb_reader_close(VALUE self) {
+  struct cdb *cdb = NULL;
+
+  if (RTEST(rcdb_reader_closed_p(self))) {
+    return Qnil;
+  }
+
+  Get_CDB_Reader(self, cdb);
+  rb_iv_set(self, &quot;closed&quot;, Qtrue);
+
+  rb_io_close(rb_iv_get(self, &quot;@io&quot;));
+
+  return Qnil;
+}</pre>
+          </div><!-- close-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- close-method -->
+
+    
+      <div id="method-i-closed-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            closed? &rarr; true | false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Whether <em>reader</em> is closed.</p>
+          
+
+          
+          <div class="method-source-code" id="closed-3F-source">
+            <pre>static VALUE
+rcdb_reader_closed_p(VALUE self) {
+  return rb_attr_get(self, rb_intern(&quot;closed&quot;));
+}</pre>
+          </div><!-- closed-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- closed-3F-method -->
+
+    
+      <div id="method-i-dump" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            dump &rarr; aString
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns a dump of the database.</p>
+          
+
+          
+          <div class="method-source-code" id="dump-source">
+            <pre>static VALUE
+rcdb_reader_dump(VALUE self) {
+  VALUE ary = rb_ary_new3(1, rb_str_new2(&quot;&quot;));
+  ITER_RESULT(rcdb_reader_call_each_dump, rcdb_reader_iter_dump)
+}</pre>
+          </div><!-- dump-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- dump-method -->
+
+    
+      <div id="method-i-each" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each { |key, val| ... } &rarr; reader
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each(key) { |val| ... } &rarr; reader
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each([key]) &rarr; anEnumerator
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over each key/value pair, or, if <code>key</code> is given, each
+value for <code>key</code>. Returns <em>reader</em>, or, if no block is
+given, an enumerator.</p>
+          
+
+          
+          <div class="method-source-code" id="each-source">
+            <pre>static VALUE
+rcdb_reader_each(int argc, VALUE *argv, VALUE self) {
+  struct cdb *cdb = NULL;
+  struct cdb_find cdbf;
+  unsigned cdbp;
+  VALUE key;
+
+  if (argc &gt; 1) {
+    rb_raise(rb_eArgError, &quot;wrong number of arguments (%d for 0-1)&quot;, argc);
+  }
+
+  RETURN_ENUMERATOR(self, argc, argv);
+
+  Get_CDB_Reader(self, cdb);
+
+  if (rb_scan_args(argc, argv, &quot;01&quot;, &amp;key) == 1 &amp;&amp; !NIL_P(key)) {
+    StringValue(key);
+
+    if (cdb_findinit(&amp;cdbf, cdb, RSTRING_PTR(key), RSTRING_LEN(key)) == -1) {
+      rb_sys_fail(0);
+    }
+
+    while (cdb_findnext(&amp;cdbf) &gt; 0) {
+      rb_yield(rcdb_reader_read_value(cdb));
+    }
+  }
+  else {
+    cdb_seqinit(&amp;cdbp, cdb);
+
+    while (cdb_seqnext(&amp;cdbp, cdb) &gt; 0) {
+      rb_yield(rb_ary_new3(2,
+        rcdb_reader_read_key(cdb),
+        rcdb_reader_read_value(cdb)));
+    }
+  }
+
+  return self;
+}</pre>
+          </div><!-- each-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- each-method -->
+
+    
+      <div id="method-i-each_dump" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each_dump { |dump| ... } &rarr; reader
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each_dump(key) { |dump| ... } &rarr; reader
+          </span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each_dump([key]) &rarr; anEnumerator
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over each record dump, or, if <code>key</code> is given, each
+record dump for <code>key</code>. Returns <em>reader</em>, or, if no block
+is given, an enumerator.</p>
+          
+
+          
+          <div class="method-source-code" id="each_dump-source">
+            <pre>static VALUE
+rcdb_reader_each_dump(int argc, VALUE *argv, VALUE self) {
+  VALUE key, args = rb_ary_new3(1, self), ary = rb_ary_new();
+  VALUE (*block)(ANYARGS) = rcdb_reader_yield_dump;
+
+  if (argc &gt; 1) {
+    rb_raise(rb_eArgError, &quot;wrong number of arguments (%d for 0-1)&quot;, argc);
+  }
+
+  RETURN_ENUMERATOR(self, argc, argv);
+
+  if (rb_scan_args(argc, argv, &quot;01&quot;, &amp;key) == 1 &amp;&amp; !NIL_P(key)) {
+    rb_ary_push(ary,  key);
+    rb_ary_push(args, key);
+
+    block = rcdb_reader_yield_dump2;
+  }
+
+  rb_iterate(rcdb_reader_call_each, args, block, ary);
+
+  return self;
+}</pre>
+          </div><!-- each_dump-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- each_dump-method -->
+
+    
+      <div id="method-i-each_key" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each_key { |key| ... } &rarr; reader
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each_key &rarr; anEnumerator
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over each <em>unique</em> key. Returns <em>reader</em>, or, if no
+block is given, an enumerator.</p>
+          
+
+          
+          <div class="method-source-code" id="each_key-source">
+            <pre>static VALUE
+rcdb_reader_each_key(VALUE self) {
+  struct cdb *cdb = NULL;
+  unsigned cdbp;
+  VALUE key, hash = rb_hash_new();
+
+  Get_CDB_Reader(self, cdb);
+  cdb_seqinit(&amp;cdbp, cdb);
+
+  while (cdb_seqnext(&amp;cdbp, cdb) &gt; 0) {
+    if (!st_lookup(RHASH_TBL(hash), key = rcdb_reader_read_key(cdb), 0)) {
+      rb_hash_aset(hash, key, Qtrue);
+      rb_yield(key);
+    }
+  }
+
+  return self;
+}</pre>
+          </div><!-- each_key-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- each_key-method -->
+
+    
+      <div id="method-i-each_value" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each_value { |val| ... } &rarr; reader
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            each_value &rarr; anEnumerator
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over each value. Returns <em>reader</em>, or, if no block is
+given, an enumerator.</p>
+          
+
+          
+          <div class="method-source-code" id="each_value-source">
+            <pre>static VALUE
+rcdb_reader_each_value(VALUE self) {
+  struct cdb *cdb = NULL;
+  unsigned cdbp;
+
+  Get_CDB_Reader(self, cdb);
+  cdb_seqinit(&amp;cdbp, cdb);
+
+  while (cdb_seqnext(&amp;cdbp, cdb) &gt; 0) {
+    rb_yield(rcdb_reader_read_value(cdb));
+  }
+
+  return self;
+}</pre>
+          </div><!-- each_value-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- each_value-method -->
+
+    
+      <div id="method-i-empty-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            empty? &rarr; true | false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Whether the database is empty.</p>
+          
+
+          
+          <div class="method-source-code" id="empty-3F-source">
+            <pre>static VALUE
+rcdb_reader_empty_p(VALUE self) {
+  VALUE ary = rb_ary_new3(2, Qtrue, Qfalse);
+  ITER_RESULT(rcdb_reader_call_each_key, rcdb_reader_break_shift)
+}</pre>
+          </div><!-- empty-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- empty-3F-method -->
+
+    
+      <div id="method-i-fetch" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            fetch(key) &rarr; anArray
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Fetch all values for <code>key</code>.</p>
+          
+
+          
+          <div class="method-source-code" id="fetch-source">
+            <pre>static VALUE
+rcdb_reader_fetch(VALUE self, VALUE key) {
+  VALUE ary = rb_ary_new();
+
+  rb_iterate(rcdb_reader_call_each,
+    rb_ary_new3(2, self, key), rcdb_reader_iter_push, ary);
+
+  return ary;
+}</pre>
+          </div><!-- fetch-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Reader.html#method-i-fetch_all">fetch_all</a>
+        </div>
+        
+
+        
+      </div><!-- fetch-method -->
+
+    
+      <div id="method-i-fetch_all" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">fetch_all</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Reader.html#method-i-fetch">fetch</a>
+        </div>
+        
+      </div><!-- fetch_all-method -->
+
+    
+      <div id="method-i-fetch_first" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            fetch_first(key) &rarr; aString | nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Fetch first value for <code>key</code>. Returns <code>nil</code> if
+<code>key</code> was not found.</p>
+          
+
+          
+          <div class="method-source-code" id="fetch_first-source">
+            <pre>static VALUE
+rcdb_reader_fetch_first(VALUE self, VALUE key) {
+  struct cdb *cdb = NULL;
+  VALUE val = Qnil;
+
+  StringValue(key);
+  Get_CDB_Reader(self, cdb);
+
+  if (cdb_find(cdb, RSTRING_PTR(key), RSTRING_LEN(key)) &gt; 0) {
+    val = rcdb_reader_read_value(cdb);
+  }
+
+  return val;
+}</pre>
+          </div><!-- fetch_first-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Reader.html#method-i-5B-5D">[]</a>, <a href="Reader.html#method-i-get">get</a>
+        </div>
+        
+
+        
+      </div><!-- fetch_first-method -->
+
+    
+      <div id="method-i-fetch_last" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            fetch_last(key) &rarr; aString | nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Fetch last value for <code>key</code>. Returns <code>nil</code> if
+<code>key</code> was not found.</p>
+          
+
+          
+          <div class="method-source-code" id="fetch_last-source">
+            <pre>static VALUE
+rcdb_reader_fetch_last(VALUE self, VALUE key) {
+  struct cdb *cdb = NULL;
+  struct cdb_find cdbf;
+  VALUE val = Qnil;
+  unsigned pos = 0;
+  size_t len = 0;
+
+  StringValue(key);
+  Get_CDB_Reader(self, cdb);
+
+  if (cdb_findinit(&amp;cdbf, cdb, RSTRING_PTR(key), RSTRING_LEN(key)) == -1) {
+    rb_sys_fail(0);
+  }
+
+  while (cdb_findnext(&amp;cdbf) &gt; 0) {
+    pos = cdb_datapos(cdb);
+    len = cdb_datalen(cdb);
+  }
+
+  if (pos &gt; 0) {
+    val = rb_str_buf_new(len);
+    cdb_read(cdb, RSTRING_PTR(val), len, pos);
+    rb_str_set_len(val, len);
+  }
+
+  return val;
+}</pre>
+          </div><!-- fetch_last-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Reader.html#method-i-rget">rget</a>
+        </div>
+        
+
+        
+      </div><!-- fetch_last-method -->
+
+    
+      <div id="method-i-get" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">get</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Reader.html#method-i-fetch_first">fetch_first</a>
+        </div>
+        
+      </div><!-- get-method -->
+
+    
+      <div id="method-i-has_key-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            has_key?(key) &rarr; true | false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Whether key <code>key</code> exists in the database.</p>
+          
+
+          
+          <div class="method-source-code" id="has_key-3F-source">
+            <pre>static VALUE
+rcdb_reader_has_key_p(VALUE self, VALUE key) {
+  VALUE ary = rb_ary_new3(2, Qfalse, key);
+  ITER_RESULT(rcdb_reader_call_each_key, rcdb_reader_break_equal)
+}</pre>
+          </div><!-- has_key-3F-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Reader.html#method-i-include-3F">include?</a>, <a href="Reader.html#method-i-key-3F">key?</a>, <a href="Reader.html#method-i-member-3F">member?</a>
+        </div>
+        
+
+        
+      </div><!-- has_key-3F-method -->
+
+    
+      <div id="method-i-has_value-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            has_value?(val) &rarr; true | false
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Whether value <code>val</code> exists in the database.</p>
+          
+
+          
+          <div class="method-source-code" id="has_value-3F-source">
+            <pre>static VALUE
+rcdb_reader_has_value_p(VALUE self, VALUE val) {
+  VALUE ary = rb_ary_new3(2, Qfalse, val);
+  ITER_RESULT(rcdb_reader_call_each_value, rcdb_reader_break_equal)
+}</pre>
+          </div><!-- has_value-3F-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Reader.html#method-i-value-3F">value?</a>
+        </div>
+        
+
+        
+      </div><!-- has_value-3F-method -->
+
+    
+      <div id="method-i-include-3F" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">include?</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Reader.html#method-i-has_key-3F">has_key?</a>
+        </div>
+        
+      </div><!-- include-3F-method -->
+
+    
+      <div id="method-i-key" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            key(val) &rarr; aString | nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns the first key associated with value <code>val</code>, or
+<code>nil</code> if <code>val</code> was not found.</p>
+          
+
+          
+          <div class="method-source-code" id="key-source">
+            <pre>static VALUE
+rcdb_reader_key(VALUE self, VALUE val) {
+  VALUE ary = rb_ary_new3(2, Qnil, val);
+  ITER_RESULT(rcdb_reader_call_each, rcdb_reader_break_equal2)
+}</pre>
+          </div><!-- key-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- key-method -->
+
+    
+      <div id="method-i-key-3F" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">key?</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Reader.html#method-i-has_key-3F">has_key?</a>
+        </div>
+        
+      </div><!-- key-3F-method -->
+
+    
+      <div id="method-i-keys" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            keys &rarr; anArray
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array of all <em>unique</em> keys.</p>
+          
+
+          
+          <div class="method-source-code" id="keys-source">
+            <pre>static VALUE
+rcdb_reader_keys(VALUE self) {
+  VALUE ary = rb_ary_new();
+
+  rb_iterate(rcdb_reader_call_each_key,
+    rb_ary_new3(1, self), rcdb_reader_iter_push, ary);
+
+  return ary;
+}</pre>
+          </div><!-- keys-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- keys-method -->
+
+    
+      <div id="method-i-length" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">length</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Reader.html#method-i-size">size</a>
+        </div>
+        
+      </div><!-- length-method -->
+
+    
+      <div id="method-i-member-3F" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">member?</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Reader.html#method-i-has_key-3F">has_key?</a>
+        </div>
+        
+      </div><!-- member-3F-method -->
+
+    
+      <div id="method-i-rget" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">rget</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Reader.html#method-i-fetch_last">fetch_last</a>
+        </div>
+        
+      </div><!-- rget-method -->
+
+    
+      <div id="method-i-size" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            size &rarr; anInteger
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>The number of <em>unique</em> records in the database. Cf. <a
+href="Reader.html#method-i-total">total</a>.</p>
+          
+
+          
+          <div class="method-source-code" id="size-source">
+            <pre>static VALUE
+rcdb_reader_size(VALUE self) {
+  VALUE ary = rb_ary_new3(1, INT2FIX(0));
+  ITER_RESULT(rcdb_reader_call_each_key, rcdb_reader_iter_inc)
+}</pre>
+          </div><!-- size-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Reader.html#method-i-length">length</a>
+        </div>
+        
+
+        
+      </div><!-- size-method -->
+
+    
+      <div id="method-i-to_a" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_a &rarr; anArray
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Converts the database into an array of <a
+href="Reader.html#method-i-total">total</a> key/value pairs.</p>
+
+<pre>reader.to_a.size == reader.total</pre>
+          
+
+          
+          <div class="method-source-code" id="to_a-source">
+            <pre>static VALUE
+rcdb_reader_to_a(VALUE self) {
+  VALUE ary = rb_ary_new();
+
+  rb_iterate(rcdb_reader_call_each,
+    rb_ary_new3(1, self), rcdb_reader_iter_push, ary);
+
+  return ary;
+}</pre>
+          </div><!-- to_a-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_a-method -->
+
+    
+      <div id="method-i-to_h" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_h &rarr; aHash
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Converts the database into a hash of <a
+href="Reader.html#method-i-size">size</a> keys associated with their value,
+or, if there are multiple, an array of their values.</p>
+
+<pre>reader.to_h.size == reader.size</pre>
+          
+
+          
+          <div class="method-source-code" id="to_h-source">
+            <pre>static VALUE
+rcdb_reader_to_h(VALUE self) {
+  VALUE hash = rb_hash_new();
+
+  rb_iterate(rcdb_reader_call_each,
+    rb_ary_new3(1, self), rcdb_reader_iter_aset, hash);
+
+  return hash;
+}</pre>
+          </div><!-- to_h-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_h-method -->
+
+    
+      <div id="method-i-total" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            total &rarr; anInteger
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>The number of <em>total</em> records in the database. Cf. <a
+href="Reader.html#method-i-size">size</a>.</p>
+          
+
+          
+          <div class="method-source-code" id="total-source">
+            <pre>static VALUE
+rcdb_reader_total(VALUE self) {
+  struct cdb *cdb = NULL;
+  unsigned cdbp;
+  long i = 0;
+
+  Get_CDB_Reader(self, cdb);
+  cdb_seqinit(&amp;cdbp, cdb);
+
+  while (cdb_seqnext(&amp;cdbp, cdb) &gt; 0) {
+    i++;
+  }
+
+  return LONG2NUM(i);
+}</pre>
+          </div><!-- total-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- total-method -->
+
+    
+      <div id="method-i-value-3F" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">value?</span><span
+            class="method-args">(p1)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Reader.html#method-i-has_value-3F">has_value?</a>
+        </div>
+        
+      </div><!-- value-3F-method -->
+
+    
+      <div id="method-i-values" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            values &rarr; anArray
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array of all values.</p>
+          
+
+          
+          <div class="method-source-code" id="values-source">
+            <pre>static VALUE
+rcdb_reader_values(VALUE self) {
+  VALUE ary = rb_ary_new();
+
+  rb_iterate(rcdb_reader_call_each_value,
+    rb_ary_new3(1, self), rcdb_reader_iter_push, ary);
+
+  return ary;
+}</pre>
+          </div><!-- values-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- values-method -->
+
+    
+      <div id="method-i-values_at" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            values_at(key, ...) &rarr; anArray
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array containing the values associated with the given keys.</p>
+          
+
+          
+          <div class="method-source-code" id="values_at-source">
+            <pre>static VALUE
+rcdb_reader_values_at(int argc, VALUE *argv, VALUE self) {
+  VALUE ary = rb_ary_new();
+  long i;
+
+  for (i = 0; i &lt; argc; i++) {
+    rb_ary_push(ary, rcdb_reader_fetch(self, argv[i]));
+  }
+
+  return ary;
+}</pre>
+          </div><!-- values_at-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- values_at-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
