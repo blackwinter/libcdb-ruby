@@ -48,7 +48,7 @@ rcdb_writer_initialize(VALUE self, VALUE io) {
     rb_sys_fail(0);
   }
 
-  if (lseek(cdb_fileno(cdbm), 0, SEEK_SET) == -1)  {
+  if (lseek(cdb_fileno(cdbm), 0, SEEK_SET) == -1) {
     rb_sys_fail(0);
   }
 

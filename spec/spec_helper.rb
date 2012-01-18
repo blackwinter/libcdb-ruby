@@ -8,8 +8,8 @@ RSpec.configure { |config|
     TEST_DATA = {}
 
     1.upto(10) { |i|
-      val = TEST_DATA[key = "key#{i}"] = []
-      1.upto(i) { |j| val << "value#{i}.#{j}" }
+      v = TEST_DATA["key#{i}"] = []
+      1.upto(i) { |j| v << "value#{i}.#{j}" }
     }
 
     TEST_DATA['a' * 1024] = Array('b' * 1024 ** 2)

@@ -13,8 +13,8 @@ module LibCDB
 
     extend Forwardable
 
-    MODE_READ  = 'r' # :nodoc:
-    MODE_WRITE = 'w' # :nodoc:
+    MODE_READ  = 'r'  # :nodoc:
+    MODE_WRITE = 'w'  # :nodoc:
 
     class << self
 
