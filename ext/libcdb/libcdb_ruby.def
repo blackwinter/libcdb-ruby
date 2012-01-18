@@ -1,0 +1,8 @@
+LIBRARY libcdb_ruby.so
+EXPORTS
+Init_libcdb_ruby
+
+cCDBReader DATA
+cCDBWriter DATA
+mLibCDB DATA
+cCDB DATA

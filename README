@@ -1,0 +1,96 @@
+= libcdb-ruby - Ruby bindings for CDB Constant Databases.
+
+== VERSION
+
+This documentation refers to libcdb-ruby version 0.0.1
+
+
+== DESCRIPTION
+
+The libcdb-ruby library provides Ruby bindings for the
+TinyCDB[http://corpit.ru/mjt/tinycdb.html] package for
+creating and reading {constant databases}[http://cr.yp.to/cdb.html].
+
+  require 'libcdb'
+
+  # creating
+  LibCDB::CDB.open('foo.cdb', 'w') { |cdb|
+    cdb['a'] = 'one'
+    cdb['b'] = '123'
+  }
+
+  # reading
+  LibCDB::CDB.open('foo.cdb') { |cdb|
+    cdb['a']  #=> "one"
+    cdb['b']  #=> "123"
+    cdb['c']  #=> nil
+  }
+
+  # hybrid
+  LibCDB::CDB.open('foo.cdb', 'w+') { |cdb|
+    cdb['a'] = 'one'
+    cdb['b'] = '123'
+
+    cdb['a']  #=> "one"
+    cdb['b']  #=> "123"
+    cdb['c']  #=> nil
+
+    cdb['a'] = 'two'
+    cdb['c'] = 'xyz'
+
+    cdb['a']  #=> "two"
+    cdb['b']  #=> nil
+    cdb['c']  #=> "xyz"
+  }
+
+  # update existing database
+  LibCDB::CDB.open('foo.cdb', 'r+') { |cdb|
+    cdb.store(cdb.to_h)
+
+    cdb['d'] = '42'
+
+    cdb['a']  #=> "two"
+    cdb['b']  #=> nil
+    cdb['c']  #=> "xyz"
+    cdb['d']  #=> "42"
+  }
+
+
+== SUPPORTED PLATFORMS
+
+Linux::   1.8 & 1.9
+Windows:: 1.9 only
+
+
+== LINKS
+
+<b></b>
+Documentation:: http://blackwinter.github.com/libcdb-ruby
+Source code::   http://github.com/blackwinter/libcdb-ruby
+RubyGem::       http://rubygems.org/gems/libcdb-ruby
+TinyCDB::       http://corpit.ru/mjt/tinycdb.html
+CDB::           http://cr.yp.to/cdb.html
+
+
+== AUTHORS
+
+* Jens Wille <mailto:jens.wille@uni-koeln.de>
+
+
+== LICENSE AND COPYRIGHT
+
+Copyright (C) 2012 University of Cologne,
+Albertus-Magnus-Platz, 50923 Cologne, Germany
+
+libcdb-ruby is free software: you can redistribute it and/or modify it
+under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or (at your
+option) any later version.
+
+libcdb-ruby is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public
+License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with libcdb-ruby. If not, see <http://www.gnu.org/licenses/>.

@@ -1,0 +1,2 @@
+require 'libcdb'
+include LibCDB
