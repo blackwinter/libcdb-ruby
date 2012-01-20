@@ -1,5 +1,12 @@
 = Revision history for libcdb-ruby
 
+== 0.0.2 [2012-01-20]
+
+* Refactored C code to DRY.
+* Added Writer#<< as alias for Writer#store.
+* Added missing delegate CDB#total.
+* A little housekeeping.
+
 == 0.0.1 [2012-01-12]
 
 * Birthday :-)
