@@ -35,6 +35,8 @@ creating and reading {constant databases}[http://cr.yp.to/cdb.html].
     cdb['b']  #=> "123"
     cdb['c']  #=> nil
 
+    # database is truncated whenever
+    # a new writer is opened:
     cdb['a'] = 'two'
     cdb['c'] = 'xyz'
 
@@ -45,8 +47,10 @@ creating and reading {constant databases}[http://cr.yp.to/cdb.html].
 
   # update existing database
   LibCDB::CDB.open('foo.cdb', 'r+') { |cdb|
-    cdb.store(cdb.to_h)
+    # store existing records
+    cdb << cdb.to_h
 
+    # and add a new one
     cdb['d'] = '42'
 
     cdb['a']  #=> "two"
@@ -56,10 +60,23 @@ creating and reading {constant databases}[http://cr.yp.to/cdb.html].
   }
 
 
+== PREREQUISITES
+
+<b></b>
+* Ruby 1.8.7+ or 1.9+ (see below for details)
+* TinyCDB[http://corpit.ru/mjt/tinycdb.html] headers (not
+  needed when installing the fat binary gem on Windows)
+
+  Debian/Ubuntu:: +libcdb-dev+
+  Fedora/SuSE::   +tinycdb-devel+
+  Gentoo::        +dev-db/tinycdb+
+
+
 == SUPPORTED PLATFORMS
 
-Linux::   1.8 & 1.9
-Windows:: 1.9 only
+<b></b>
+Linux::   1.8 & 1.9 (Tested on Ubuntu with 1.8.7p302 and 1.9.3p19)
+Windows:: 1.9 only (Tested on XP with 1.9.3p0)
 
 
 == LINKS
@@ -82,6 +99,9 @@ CDB::           http://cr.yp.to/cdb.html
 This project was inspired by ruby-cdb[https://github.com/mbj/ruby-cdb] and
 cdb-full[https://rubygems.org/gems/cdb-full]. The code organization, especially the
 extension part, was modeled after libxml-ruby[https://github.com/xml4r/libxml-ruby].
+
+And props to the rake-compiler[http://github.com/luislavena/rake-compiler]
+team for making extension building such a breeze :)
 
 
 == LICENSE AND COPYRIGHT
