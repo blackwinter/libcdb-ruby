@@ -1,14 +1,7 @@
 #ifndef __RCDB_WRITER_H__
 #define __RCDB_WRITER_H__
 
-#define Get_CDB_Writer(obj, var) {\
-  if (RTEST(rcdb_writer_closed_p(obj))) {\
-    rb_raise(rb_eRuntimeError, "closed stream");\
-  }\
-  else {\
-    Data_Get_Struct((obj), struct cdb_make, (var));\
-  }\
-}
+#define RCDB_WRITER_GET(obj, ptr) RCDB_GET_STRUCT(writ, cdb_make, obj, ptr)
 
 VALUE cCDBWriter;
 void rcdb_init_writer(void);

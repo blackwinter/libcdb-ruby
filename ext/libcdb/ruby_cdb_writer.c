@@ -1,15 +1,6 @@
 #include "ruby_libcdb.h"
 
-static void
-rcdb_writer_free(void *ptr) {
-  free(ptr);
-}
-
-static VALUE
-rcdb_writer_alloc(VALUE klass) {
-  struct cdb_make *cdbm = ALLOC_N(struct cdb_make, 1);
-  return Data_Wrap_Struct(klass, NULL, rcdb_writer_free, cdbm);
-}
+RCDB_DEFINE_ALLOC(writ, cdb_make)
 
 /*
  * call-seq:
@@ -32,23 +23,9 @@ rcdb_writer_closed_p(VALUE self) {
  */
 static VALUE
 rcdb_writer_initialize(VALUE self, VALUE io) {
-  struct cdb_make *cdbm = NULL;
-  rb_io_t *fptr;
+  RCDB_INITIALIZE(writ, WRIT, cdb_make, make_start)
 
-  Check_Type(io, T_FILE);
-  GetOpenFile(io, fptr);
-
-  rb_io_check_writable(fptr);
-  rb_iv_set(self, "@io", io);
-  rb_iv_set(self, "closed", Qfalse);
-
-  Get_CDB_Writer(self, cdbm);
-
-  if (cdb_make_start(cdbm, GetFileFD(fptr)) == -1) {
-    rb_sys_fail(0);
-  }
-
-  if (lseek(cdb_fileno(cdbm), 0, SEEK_SET) == -1) {
+  if (lseek(cdb_fileno(ptr), 0, SEEK_SET) == -1) {
     rb_sys_fail(0);
   }
 
@@ -137,7 +114,7 @@ rcdb_writer_put(int argc, VALUE *argv, VALUE self, enum cdb_put_mode mode) {
   VALUE arg, val;
   long i;
 
-  Get_CDB_Writer(self, cdbm);
+  RCDB_WRITER_GET(self, cdbm);
 
   switch (argc) {
     case 1:
@@ -256,7 +233,7 @@ rcdb_writer_close(VALUE self) {
     return Qnil;
   }
 
-  Get_CDB_Writer(self, cdbm);
+  RCDB_WRITER_GET(self, cdbm);
   rb_iv_set(self, "closed", Qtrue);
 
   if (cdb_make_finish(cdbm) == -1) {
@@ -268,18 +245,7 @@ rcdb_writer_close(VALUE self) {
   return Qnil;
 }
 
-/* :nodoc: */
-static VALUE
-rcdb_writer_inspect(VALUE self) {
-  VALUE str = rb_call_super(0, NULL);
-
-  if (RTEST(rcdb_writer_closed_p(self))) {
-    rb_funcall(str,
-      rb_intern("insert"), 2, INT2FIX(-2), rb_str_new2(" (closed)"));
-  }
-
-  return str;
-}
+RCDB_DEFINE_INSPECT(writ)
 
 void rcdb_init_writer(void) {
   /*
@@ -296,6 +262,7 @@ void rcdb_init_writer(void) {
   rb_define_method(cCDBWriter, "replace",    rcdb_writer_replace,    -1);
   rb_define_method(cCDBWriter, "store",      rcdb_writer_store,      -1);
 
+  rb_define_alias(cCDBWriter, "<<",  "store");
   rb_define_alias(cCDBWriter, "[]=", "replace");
   rb_define_alias(cCDBWriter, "add", "store");
 }
