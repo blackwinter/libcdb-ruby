@@ -133,9 +133,9 @@ module LibCDB
                             :fetch_first, :fetch_last, :get, :has_key?,
                             :has_value?, :include?, :key, :key?, :keys,
                             :length, :member?, :rget, :size, :to_a,
-                            :to_h, :value?, :values, :values_at
+                            :to_h, :total, :value?, :values, :values_at
 
-    def_delegators :writer, :[]=, :add, :insert, :replace, :store
+    def_delegators :writer, :<<, :[]=, :add, :insert, :replace, :store
 
     # call-seq:
     #   cdb.read? -> true | false
