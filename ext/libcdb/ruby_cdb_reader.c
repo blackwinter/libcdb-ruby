@@ -62,23 +62,13 @@ _rcdb_reader_iter_aset(VALUE pair, VALUE hash) {
 /* Helper method */
 static VALUE
 _rcdb_reader_break_equal(VALUE val, VALUE ary) {
-  if (RCDB_READER_EQUAL(val)) {
-    rb_ary_store(ary, 0, Qtrue);
-    rb_iter_break();
-  }
-
-  return Qnil;
+  RCDB_READER_BREAK_EQUAL(val, Qtrue)
 }
 
 /* Helper method */
 static VALUE
 _rcdb_reader_break_equal2(VALUE pair, VALUE ary) {
-  if (RCDB_READER_EQUAL(rb_ary_entry(pair, 1))) {
-    rb_ary_store(ary, 0, rb_ary_entry(pair, 0));
-    rb_iter_break();
-  }
-
-  return Qnil;
+  RCDB_READER_BREAK_EQUAL(rb_ary_entry(pair, 1), rb_ary_entry(pair, 0))
 }
 
 /* Helper method */
@@ -157,12 +147,7 @@ rcdb_reader_each(int argc, VALUE *argv, VALUE self) {
   unsigned cdbp;
   VALUE key;
 
-  if (argc > 1) {
-    rb_raise(rb_eArgError, "wrong number of arguments (%d for 0-1)", argc);
-  }
-
-  RETURN_ENUMERATOR(self, argc, argv);
-
+  RCDB_RETURN_ENUMERATOR(self, argc, argv, 1);
   RCDB_READER_GET(self, cdb);
 
   if (rb_scan_args(argc, argv, "01", &key) == 1 && !NIL_P(key)) {
@@ -203,11 +188,7 @@ rcdb_reader_each_dump(int argc, VALUE *argv, VALUE self) {
   VALUE key, args = rb_ary_new3(1, self), ary = rb_ary_new();
   VALUE (*block)(ANYARGS) = _rcdb_reader_yield_dump;
 
-  if (argc > 1) {
-    rb_raise(rb_eArgError, "wrong number of arguments (%d for 0-1)", argc);
-  }
-
-  RETURN_ENUMERATOR(self, argc, argv);
+  RCDB_RETURN_ENUMERATOR(self, argc, argv, 1);
 
   if (rb_scan_args(argc, argv, "01", &key) == 1 && !NIL_P(key)) {
     rb_ary_push(ary,  key);

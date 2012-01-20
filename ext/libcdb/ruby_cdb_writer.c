@@ -154,7 +154,7 @@ rcdb_writer_put(int argc, VALUE *argv, VALUE self, enum cdb_put_mode mode) {
       rcdb_writer_put_value(cdbm, argv[0], argv[1], mode);
       break;
     default:
-      rb_raise(rb_eArgError, "wrong number of arguments (%d for 1-2)", argc);
+      RCDB_RAISE_ARGS(1, 2)
       break;
   }
 

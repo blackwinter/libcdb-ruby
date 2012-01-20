@@ -7,14 +7,13 @@
 #define RCDB_GET_FD(fptr) fileno((fptr)->f)
 #endif
 
-#define RCDB_GET_STRUCT(what, _struct, obj, ptr) {\
+#define RCDB_GET_STRUCT(what, _struct, obj, ptr) \
   if (RTEST(rcdb_##what##er_closed_p(obj))) {\
     rb_raise(rb_eIOError, "closed stream");\
   }\
   else {\
     Data_Get_Struct((obj), struct _struct, (ptr));\
   }\
-}
 
 #define RCDB_DEFINE_ALLOC(what, _struct) \
 static void \
@@ -44,6 +43,17 @@ rcdb_##what##er_alloc(VALUE klass) {\
   if (cdb_##init(ptr, RCDB_GET_FD(fptr)) == -1) {\
     rb_sys_fail(0);\
   }
+
+#define RCDB_RAISE_ARGS(min, max) \
+  rb_raise(rb_eArgError,\
+    "wrong number of arguments (%d for " #min "-" #max ")", argc);
+
+#define RCDB_RETURN_ENUMERATOR(self, argc, argv, max) \
+  if (argc > max) {\
+    RCDB_RAISE_ARGS(0, max)\
+  }\
+\
+  RETURN_ENUMERATOR(self, argc, argv)
 
 #define RCDB_DEFINE_INSPECT(what) \
 static VALUE \

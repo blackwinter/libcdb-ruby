@@ -26,8 +26,13 @@ _rcdb_reader_call_##iter(VALUE args) {\
   RCDB_READER_ITERATE1(method, block, arg1)\
   return rb_ary_entry(arg, 0);
 
-#define RCDB_READER_EQUAL(val) \
-  RTEST(rb_funcall((val), rb_intern("=="), 1, rb_ary_entry(ary, 1)))
+#define RCDB_READER_BREAK_EQUAL(val, ret) \
+  if (RTEST(rb_funcall(val, rb_intern("=="), 1, rb_ary_entry(ary, 1)))) {\
+    rb_ary_store(ary, 0, ret);\
+    rb_iter_break();\
+  }\
+\
+  return Qnil;
 
 #define RCDB_READER_DEFINE_READ(what) \
 static VALUE \
