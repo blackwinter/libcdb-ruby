@@ -18,12 +18,12 @@
 #define RCDB_DEFINE_ALLOC(what, _struct) \
 static void \
 rcdb_##what##er_free(void *ptr) {\
-  free(ptr);\
+  xfree(ptr);\
 }\
 \
 static VALUE \
 rcdb_##what##er_alloc(VALUE klass) {\
-  struct _struct *ptr = ALLOC_N(struct _struct, 1);\
+  struct _struct *ptr = ALLOC(struct _struct);\
   return Data_Wrap_Struct(klass, NULL, rcdb_##what##er_free, ptr);\
 }
 
