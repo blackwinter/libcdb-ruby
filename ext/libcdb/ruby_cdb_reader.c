@@ -82,8 +82,8 @@ _rcdb_reader_break_shift(VALUE val, VALUE ary) {
 
 /* Helper method */
 static VALUE
-_rcdb_reader_iter_inc(VALUE val, VALUE ary) {
-  rb_ary_store(ary, 0, rb_funcall(rb_ary_entry(ary, 0), rb_intern("succ"), 0));
+_rcdb_reader_iter_inc(VALUE val, long *i) {
+  ++*i;
   return Qnil;
 }
 
@@ -419,8 +419,9 @@ rcdb_reader_empty_p(VALUE self) {
  */
 static VALUE
 rcdb_reader_size(VALUE self) {
-  RCDB_READER_ITERATE_ARY(each_key, iter_inc,
-    rb_ary_new3(1, INT2FIX(0)))
+  long i = 0;
+  RCDB_READER_ITERATE1(each_key, iter_inc, (VALUE)&i)
+  return LONG2NUM(i);
 }
 
 /*
@@ -439,7 +440,7 @@ rcdb_reader_total(VALUE self) {
   cdb_seqinit(&cdbp, cdb);
 
   while (cdb_seqnext(&cdbp, cdb) > 0) {
-    i++;
+    ++i;
   }
 
   return LONG2NUM(i);
