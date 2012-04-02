@@ -1,5 +1,10 @@
 = Revision history for libcdb-ruby
 
+== 0.0.3 [2012-04-02]
+
+* Fixed linking error on Mac OS X. (Issue #1 reported by minaguib)
+* Some internal refactoring.
+
 == 0.0.2 [2012-01-20]
 
 * Refactored C code to DRY.
