@@ -68,7 +68,7 @@ rcdb_##what##er_inspect(VALUE self) {\
   return str;\
 }
 
-VALUE cCDB;
+extern VALUE cCDB;
 void rcdb_init_cdb(void);
 
 #endif  /* __RUBY_CDB_H__ */

@@ -1,5 +1,7 @@
 #include "ruby_libcdb.h"
 
+VALUE cCDBWriter;
+
 RCDB_DEFINE_ALLOC(writ, cdb_make)
 
 /*

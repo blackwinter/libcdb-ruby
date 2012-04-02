@@ -1,5 +1,7 @@
 #include "ruby_libcdb.h"
 
+VALUE cCDB;
+
 void
 rcdb_init_cdb(void) {
   char libcdb_version[8];

@@ -3,7 +3,7 @@
 
 #define RCDB_WRITER_GET(obj, ptr) RCDB_GET_STRUCT(writ, cdb_make, obj, ptr)
 
-VALUE cCDBWriter;
+extern VALUE cCDBWriter;
 void rcdb_init_writer(void);
 
 #endif  /* __RCDB_WRITER_H__ */

@@ -49,7 +49,7 @@ _rcdb_reader_read_##what(struct cdb *cdb) {\
   return ret;\
 }
 
-VALUE cCDBReader;
+extern VALUE cCDBReader;
 void rcdb_init_reader(void);
 
 #endif /* __RCDB_READER_H__ */

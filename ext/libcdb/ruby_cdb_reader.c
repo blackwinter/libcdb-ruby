@@ -1,5 +1,7 @@
 #include "ruby_libcdb.h"
 
+VALUE cCDBReader;
+
 RCDB_DEFINE_ALLOC(read, cdb)
 
 /*

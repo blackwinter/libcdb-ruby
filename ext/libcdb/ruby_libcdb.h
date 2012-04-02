@@ -22,6 +22,6 @@
 #include "ruby_cdb_reader.h"
 #include "ruby_cdb_writer.h"
 
-VALUE mLibCDB;
+extern VALUE mLibCDB;
 
 #endif  /* __RUBY_LIBCDB_H__ */

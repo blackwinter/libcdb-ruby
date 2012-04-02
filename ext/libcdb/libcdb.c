@@ -1,10 +1,9 @@
 #include "ruby_libcdb.h"
 
+VALUE mLibCDB;
+
 void
 Init_libcdb_ruby(void) {
-  char libcdb_version[8];
-  snprintf(libcdb_version, 7, "%g", TINYCDB_VERSION);
-
   /*
    * LibCDB namespace.
    */
