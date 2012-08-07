@@ -503,6 +503,7 @@ rcdb_reader_close(VALUE self) {
   RCDB_READER_GET(self, cdb);
   rb_iv_set(self, "closed", Qtrue);
 
+  cdb_free(cdb);
   rb_io_close(rb_iv_get(self, "@io"));
 
   return Qnil;
