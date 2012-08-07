@@ -32,20 +32,12 @@ module LibCDB
       # <tt>r+</tt>:: CDB (initially opened for reading)
       # <tt>w+</tt>:: CDB (initially opened for writing)
       def open(path, mode = MODE_READ)
-        klass, args = self, []
-
-        case mode
-          when 'r+'       then args = [mode = MODE_READ]
-          when 'w+'       then args = [       MODE_WRITE]
-          when MODE_READ  then klass        = Reader
-          when MODE_WRITE then klass,  mode = Writer, 'w+'
-          else raise ArgumentError, "illegal access mode #{mode}"
-        end
+        klass, args = _open_args(path, mode)
 
         cdb = begin
-          klass.new(io = File.open(path, mode), *args)
+          klass.new(*args)
         rescue
-          io.close if io
+          args.first.close
           raise
         end
 
@@ -84,6 +76,22 @@ module LibCDB
 
           target
         }
+      end
+
+      private
+
+      def _open_args(path, mode)
+        klass, args = self, []
+
+        case mode
+          when 'r+'       then args = [mode = MODE_READ]
+          when 'w+'       then args = [       MODE_WRITE]
+          when MODE_READ  then klass        = Reader
+          when MODE_WRITE then klass,  mode = Writer, 'w+'
+          else raise ArgumentError, "illegal access mode #{mode.inspect}"
+        end
+
+        [klass, args.unshift(File.open(path, mode))]
       end
 
     end
