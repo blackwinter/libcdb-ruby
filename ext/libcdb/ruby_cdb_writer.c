@@ -77,8 +77,8 @@ rcdb_writer_put_value(struct cdb_make *cdbm, VALUE key, VALUE val, enum cdb_put_
         case CDB_PUT_INSERT:
           /* see if key already exists */
           switch (cdb_make_exists(cdbm,
-                RSTRING_PTR(key),
-                RSTRING_LEN(key))) {
+                    RSTRING_PTR(key),
+                    RSTRING_LEN(key))) {
             case 0:
               /* doesn't exist, add all */
               mode = CDB_PUT_ADD;
