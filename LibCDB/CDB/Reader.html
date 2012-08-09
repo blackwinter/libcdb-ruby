@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class LibCDB::CDB::Reader - libcdb-ruby Application documentation (v0.0.3)</title>
+<title>class LibCDB::CDB::Reader - libcdb-ruby Application documentation (v0.0.4)</title>
 
 <link type="text/css" media="screen" href="../../rdoc.css" rel="stylesheet">
 
@@ -318,6 +318,7 @@ rcdb_reader_close(VALUE self) {
   RCDB_READER_GET(self, cdb);
   rb_iv_set(self, &quot;closed&quot;, Qtrue);
 
+  cdb_free(cdb);
   rb_io_close(rb_iv_get(self, &quot;@io&quot;));
 
   return Qnil;
