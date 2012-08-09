@@ -2,6 +2,7 @@
 
 == 0.0.4 [unreleased]
 
+* Fixed writing with Ruby 1.9.3 on Windows.
 * Fixed leaking CDB pointer when closing reader.
 
 == 0.0.3 [2012-04-02]

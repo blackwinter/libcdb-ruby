@@ -13,8 +13,8 @@ module LibCDB
 
     extend Forwardable
 
-    MODE_READ  = 'r'  # :nodoc:
-    MODE_WRITE = 'w'  # :nodoc:
+    MODE_READ  = 'r'.freeze  # :nodoc:
+    MODE_WRITE = 'w'.freeze  # :nodoc:
 
     class << self
 
@@ -91,7 +91,7 @@ module LibCDB
           else raise ArgumentError, "illegal access mode #{mode.inspect}"
         end
 
-        [klass, args.unshift(File.open(path, mode))]
+        [klass, args.unshift(File.open(path, mode + 'b'))]
       end
 
     end
@@ -110,7 +110,7 @@ module LibCDB
       case mode
         when MODE_READ  then open_read
         when MODE_WRITE then open_write
-        else raise ArgumentError, "illegal access mode #{mode}"
+        else raise ArgumentError, "illegal access mode #{mode.inspect}"
       end
     end
 
@@ -256,7 +256,7 @@ module LibCDB
       @mode = new_mode
       new_mode += '+' if new_mode == MODE_WRITE
 
-      io.reopen(io.path, new_mode)
+      io.reopen(io.path, new_mode + 'b')
     end
 
   end
