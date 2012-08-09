@@ -22,7 +22,10 @@ begin
       :author    => %q{Jens Wille},
       :email     => %q{jens.wille@uni-koeln.de},
       :homepage  => :blackwinter,
-      :extension => { :cross_config_options => cco }
+      :extension => {
+        :cross_config_options => cco,
+        :ruby_versions => RUBY_VERSION
+      }
     }
   }}
 rescue LoadError => err
