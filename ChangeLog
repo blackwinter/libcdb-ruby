@@ -1,6 +1,6 @@
 = Revision history for libcdb-ruby
 
-== 0.0.4 [unreleased]
+== 0.0.4 [2012-08-09]
 
 * Fixed writing with Ruby 1.9.3 on Windows.
 * Fixed leaking CDB pointer when closing reader.
