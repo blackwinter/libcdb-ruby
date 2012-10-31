@@ -1,5 +1,5 @@
-#ifndef __RUBY_LIBCDB_H__
-#define __RUBY_LIBCDB_H__
+#ifndef RUBY_LIBCDB_H
+#define RUBY_LIBCDB_H
 
 #include <ruby.h>
 #if HAVE_RUBY_IO_H
@@ -24,4 +24,4 @@
 
 extern VALUE mLibCDB;
 
-#endif  /* __RUBY_LIBCDB_H__ */
+#endif  /* RUBY_LIBCDB_H */

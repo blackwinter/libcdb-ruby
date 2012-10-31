@@ -1,5 +1,5 @@
-#ifndef __RUBY_CDB_H__
-#define __RUBY_CDB_H__
+#ifndef RUBY_CDB_H
+#define RUBY_CDB_H
 
 #ifdef HAVE_RUBY_IO_H
 #define RCDB_GET_FD(fptr) (fptr)->fd
@@ -71,4 +71,4 @@ rcdb_##what##er_inspect(VALUE self) {\
 extern VALUE cCDB;
 void rcdb_init_cdb(void);
 
-#endif  /* __RUBY_CDB_H__ */
+#endif  /* RUBY_CDB_H */

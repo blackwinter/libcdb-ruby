@@ -1,5 +1,5 @@
-#ifndef __RCDB_READER_H__
-#define __RCDB_READER_H__
+#ifndef RCDB_READER_H
+#define RCDB_READER_H
 
 #define RCDB_READER_GET(obj, ptr) RCDB_GET_STRUCT(read, cdb, obj, ptr)
 
@@ -52,4 +52,4 @@ _rcdb_reader_read_##what(struct cdb *cdb) {\
 extern VALUE cCDBReader;
 void rcdb_init_reader(void);
 
-#endif /* __RCDB_READER_H__ */
+#endif /* RCDB_READER_H */
