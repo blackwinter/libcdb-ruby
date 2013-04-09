@@ -43,11 +43,13 @@
 </nav>
 
 
+  
+
   <div id="file-metadata">
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>lib/libcdb/version.rb
+    <li>ext/libcdb/libcdb.c
   </ul>
 </nav>
 
@@ -76,73 +78,74 @@
   </ul>
 </nav>
 
+    
     <!-- Method Quickref -->
 <nav id="method-list-section" class="section">
   <h3 class="section-header">Methods</h3>
 
   <ul class="link-list">
     
-    <li><a href="#method-c-new">::new</a>
+    <li ><a href="#method-c-new">::new</a>
     
-    <li><a href="#method-i-5B-5D">#[]</a>
+    <li ><a href="#method-i-5B-5D">#[]</a>
     
-    <li><a href="#method-i-close">#close</a>
+    <li ><a href="#method-i-close">#close</a>
     
-    <li><a href="#method-i-closed-3F">#closed?</a>
+    <li ><a href="#method-i-closed-3F">#closed?</a>
     
-    <li><a href="#method-i-dump">#dump</a>
+    <li ><a href="#method-i-dump">#dump</a>
     
-    <li><a href="#method-i-each">#each</a>
+    <li ><a href="#method-i-each">#each</a>
     
-    <li><a href="#method-i-each_dump">#each_dump</a>
+    <li ><a href="#method-i-each_dump">#each_dump</a>
     
-    <li><a href="#method-i-each_key">#each_key</a>
+    <li ><a href="#method-i-each_key">#each_key</a>
     
-    <li><a href="#method-i-each_value">#each_value</a>
+    <li ><a href="#method-i-each_value">#each_value</a>
     
-    <li><a href="#method-i-empty-3F">#empty?</a>
+    <li ><a href="#method-i-empty-3F">#empty?</a>
     
-    <li><a href="#method-i-fetch">#fetch</a>
+    <li ><a href="#method-i-fetch">#fetch</a>
     
-    <li><a href="#method-i-fetch_all">#fetch_all</a>
+    <li ><a href="#method-i-fetch_all">#fetch_all</a>
     
-    <li><a href="#method-i-fetch_first">#fetch_first</a>
+    <li ><a href="#method-i-fetch_first">#fetch_first</a>
     
-    <li><a href="#method-i-fetch_last">#fetch_last</a>
+    <li ><a href="#method-i-fetch_last">#fetch_last</a>
     
-    <li><a href="#method-i-get">#get</a>
+    <li ><a href="#method-i-get">#get</a>
     
-    <li><a href="#method-i-has_key-3F">#has_key?</a>
+    <li ><a href="#method-i-has_key-3F">#has_key?</a>
     
-    <li><a href="#method-i-has_value-3F">#has_value?</a>
+    <li ><a href="#method-i-has_value-3F">#has_value?</a>
     
-    <li><a href="#method-i-include-3F">#include?</a>
+    <li ><a href="#method-i-include-3F">#include?</a>
     
-    <li><a href="#method-i-key">#key</a>
+    <li ><a href="#method-i-key">#key</a>
     
-    <li><a href="#method-i-key-3F">#key?</a>
+    <li ><a href="#method-i-key-3F">#key?</a>
     
-    <li><a href="#method-i-keys">#keys</a>
+    <li ><a href="#method-i-keys">#keys</a>
     
-    <li><a href="#method-i-length">#length</a>
+    <li ><a href="#method-i-length">#length</a>
     
-    <li><a href="#method-i-member-3F">#member?</a>
+    <li ><a href="#method-i-member-3F">#member?</a>
     
-    <li><a href="#method-i-rget">#rget</a>
+    <li ><a href="#method-i-rget">#rget</a>
     
-    <li><a href="#method-i-size">#size</a>
+    <li ><a href="#method-i-size">#size</a>
     
-    <li><a href="#method-i-to_a">#to_a</a>
+    <li ><a href="#method-i-to_a">#to_a</a>
     
-    <li><a href="#method-i-to_h">#to_h</a>
+    <li ><a href="#method-i-to_h">#to_h</a>
     
-    <li><a href="#method-i-total">#total</a>
+    <li ><a href="#method-i-total">#total</a>
     
-    <li><a href="#method-i-value-3F">#value?</a>
+    <li ><a href="#method-i-value-3F">#value?</a>
     
-    <li><a href="#method-i-values">#values</a>
+    <li ><a href="#method-i-values">#values</a>
     
-    <li><a href="#method-i-values_at">#values_at</a>
+    <li ><a href="#method-i-values_at">#values_at</a>
     
   </ul>
 </nav>
@@ -235,6 +238,7 @@ href="Writer.html">Writer</a> for creating them.</p>
 <code>io</code>. <code>io</code> must be opened for reading
 (<code>r</code>).</p>
           
+          
 
           
           <div class="method-source-code" id="new-source">
@@ -264,11 +268,12 @@ rcdb_reader_initialize(VALUE self, VALUE io) {
         <div class="method-heading">
           <span class="method-name">[]</span><span
             class="method-args">(p1)</span>
-          <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
         <div class="method-description">
+          
           
           
           
@@ -303,6 +308,7 @@ rcdb_reader_initialize(VALUE self, VALUE io) {
         <div class="method-description">
           
           <p>Closes <em>reader</em>, as well as the underlying IO object.</p>
+          
           
 
           
@@ -351,6 +357,7 @@ rcdb_reader_close(VALUE self) {
           
           <p>Whether <em>reader</em> is closed.</p>
           
+          
 
           
           <div class="method-source-code" id="closed-3F-source">
@@ -385,6 +392,7 @@ rcdb_reader_closed_p(VALUE self) {
         <div class="method-description">
           
           <p>Returns a dump of the database.</p>
+          
           
 
           
@@ -436,6 +444,7 @@ rcdb_reader_dump(VALUE self) {
           <p>Iterates over each key/value pair, or, if <code>key</code> is given, each
 value for <code>key</code>. Returns <em>reader</em>, or, if no block is
 given, an enumerator.</p>
+          
           
 
           
@@ -517,6 +526,7 @@ rcdb_reader_each(int argc, VALUE *argv, VALUE self) {
 record dump for <code>key</code>. Returns <em>reader</em>, or, if no block
 is given, an enumerator.</p>
           
+          
 
           
           <div class="method-source-code" id="each_dump-source">
@@ -573,6 +583,7 @@ rcdb_reader_each_dump(int argc, VALUE *argv, VALUE self) {
           
           <p>Iterates over each <em>unique</em> key. Returns <em>reader</em>, or, if no
 block is given, an enumerator.</p>
+          
           
 
           
@@ -631,6 +642,7 @@ rcdb_reader_each_key(VALUE self) {
           <p>Iterates over each value. Returns <em>reader</em>, or, if no block is
 given, an enumerator.</p>
           
+          
 
           
           <div class="method-source-code" id="each_value-source">
@@ -676,6 +688,7 @@ rcdb_reader_each_value(VALUE self) {
           
           <p>Whether the database is empty.</p>
           
+          
 
           
           <div class="method-source-code" id="empty-3F-source">
@@ -712,6 +725,7 @@ rcdb_reader_empty_p(VALUE self) {
           
           <p>Fetch all values for <code>key</code>.</p>
           
+          
 
           
           <div class="method-source-code" id="fetch-source">
@@ -741,11 +755,12 @@ rcdb_reader_fetch(VALUE self, VALUE key) {
         <div class="method-heading">
           <span class="method-name">fetch_all</span><span
             class="method-args">(p1)</span>
-          <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
         <div class="method-description">
+          
           
           
           
@@ -781,6 +796,7 @@ rcdb_reader_fetch(VALUE self, VALUE key) {
           
           <p>Fetch first value for <code>key</code>. Returns <code>nil</code> if
 <code>key</code> was not found.</p>
+          
           
 
           
@@ -832,6 +848,7 @@ rcdb_reader_fetch_first(VALUE self, VALUE key) {
           <p>Fetch last value for <code>key</code>. Returns <code>nil</code> if
 <code>key</code> was not found.</p>
           
+          
 
           
           <div class="method-source-code" id="fetch_last-source">
@@ -882,11 +899,12 @@ rcdb_reader_fetch_last(VALUE self, VALUE key) {
         <div class="method-heading">
           <span class="method-name">get</span><span
             class="method-args">(p1)</span>
-          <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
         <div class="method-description">
+          
           
           
           
@@ -921,6 +939,7 @@ rcdb_reader_fetch_last(VALUE self, VALUE key) {
         <div class="method-description">
           
           <p>Whether key <code>key</code> exists in the database.</p>
+          
           
 
           
@@ -962,6 +981,7 @@ rcdb_reader_has_key_p(VALUE self, VALUE key) {
           
           <p>Whether value <code>val</code> exists in the database.</p>
           
+          
 
           
           <div class="method-source-code" id="has_value-3F-source">
@@ -989,11 +1009,12 @@ rcdb_reader_has_value_p(VALUE self, VALUE val) {
         <div class="method-heading">
           <span class="method-name">include?</span><span
             class="method-args">(p1)</span>
-          <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
         <div class="method-description">
+          
           
           
           
@@ -1030,6 +1051,7 @@ rcdb_reader_has_value_p(VALUE self, VALUE val) {
           <p>Returns the first key associated with value <code>val</code>, or
 <code>nil</code> if <code>val</code> was not found.</p>
           
+          
 
           
           <div class="method-source-code" id="key-source">
@@ -1053,11 +1075,12 @@ rcdb_reader_key(VALUE self, VALUE val) {
         <div class="method-heading">
           <span class="method-name">key?</span><span
             class="method-args">(p1)</span>
-          <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
         <div class="method-description">
+          
           
           
           
@@ -1093,6 +1116,7 @@ rcdb_reader_key(VALUE self, VALUE val) {
           
           <p>Returns an array of all <em>unique</em> keys.</p>
           
+          
 
           
           <div class="method-source-code" id="keys-source">
@@ -1115,11 +1139,12 @@ rcdb_reader_keys(VALUE self) {
         <div class="method-heading">
           <span class="method-name">length</span><span
             class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
         <div class="method-description">
+          
           
           
           
@@ -1142,11 +1167,12 @@ rcdb_reader_keys(VALUE self) {
         <div class="method-heading">
           <span class="method-name">member?</span><span
             class="method-args">(p1)</span>
-          <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
         <div class="method-description">
+          
           
           
           
@@ -1169,11 +1195,12 @@ rcdb_reader_keys(VALUE self) {
         <div class="method-heading">
           <span class="method-name">rget</span><span
             class="method-args">(p1)</span>
-          <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
         <div class="method-description">
+          
           
           
           
@@ -1209,6 +1236,7 @@ rcdb_reader_keys(VALUE self) {
           
           <p>The number of <em>unique</em> records in the database. Cf. <a
 href="Reader.html#method-i-total">total</a>.</p>
+          
           
 
           
@@ -1254,6 +1282,7 @@ href="Reader.html#method-i-total">total</a> key/value pairs.</p>
 
 <pre>reader.to_a.size == reader.total</pre>
           
+          
 
           
           <div class="method-source-code" id="to_a-source">
@@ -1293,6 +1322,7 @@ or, if there are multiple, an array of their values.</p>
 
 <pre>reader.to_h.size == reader.size</pre>
           
+          
 
           
           <div class="method-source-code" id="to_h-source">
@@ -1329,6 +1359,7 @@ rcdb_reader_to_h(VALUE self) {
           <p>The number of <em>total</em> records in the database. Cf. <a
 href="Reader.html#method-i-size">size</a>.</p>
           
+          
 
           
           <div class="method-source-code" id="total-source">
@@ -1362,11 +1393,12 @@ rcdb_reader_total(VALUE self) {
         <div class="method-heading">
           <span class="method-name">value?</span><span
             class="method-args">(p1)</span>
-          <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
         <div class="method-description">
+          
           
           
           
@@ -1401,6 +1433,7 @@ rcdb_reader_total(VALUE self) {
         <div class="method-description">
           
           <p>Returns an array of all values.</p>
+          
           
 
           
@@ -1437,6 +1470,7 @@ rcdb_reader_values(VALUE self) {
           
           <p>Returns an array containing the values associated with the given keys.</p>
           
+          
 
           
           <div class="method-source-code" id="values_at-source">
@@ -1470,7 +1504,7 @@ rcdb_reader_values_at(int argc, VALUE *argv, VALUE self) {
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 

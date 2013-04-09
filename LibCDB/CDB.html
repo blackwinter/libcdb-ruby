@@ -43,12 +43,14 @@
 </nav>
 
 
+  
+
   <div id="file-metadata">
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>lib/libcdb.rb
     <li>ext/libcdb/libcdb.c
+    <li>lib/libcdb.rb
     <li>lib/libcdb/version.rb
   </ul>
 </nav>
@@ -66,47 +68,60 @@
 </nav>
 
     
+    <!-- Extension Modules -->
+<nav id="extends-section" class="section">
+  <h3 class="section-header">Extended With Modules</h3>
+
+  <ul class="link-list">
+    
+  
+    <li><span class="extend">Forwardable</span>
+  
+  
+  </ul>
+</nav>
+
     <!-- Method Quickref -->
 <nav id="method-list-section" class="section">
   <h3 class="section-header">Methods</h3>
 
   <ul class="link-list">
     
-    <li><a href="#method-c-_open_args">::_open_args</a>
+    <li ><a href="#method-c-_open_args">::_open_args</a>
     
-    <li><a href="#method-c-dump">::dump</a>
+    <li ><a href="#method-c-dump">::dump</a>
     
-    <li><a href="#method-c-foreach">::foreach</a>
+    <li ><a href="#method-c-foreach">::foreach</a>
     
-    <li><a href="#method-c-new">::new</a>
+    <li ><a href="#method-c-new">::new</a>
     
-    <li><a href="#method-c-open">::open</a>
+    <li ><a href="#method-c-open">::open</a>
     
-    <li><a href="#method-i-close">#close</a>
+    <li ><a href="#method-i-close">#close</a>
     
-    <li><a href="#method-i-close_read">#close_read</a>
+    <li ><a href="#method-i-close_read">#close_read</a>
     
-    <li><a href="#method-i-close_write">#close_write</a>
+    <li ><a href="#method-i-close_write">#close_write</a>
     
-    <li><a href="#method-i-closed-3F">#closed?</a>
+    <li ><a href="#method-i-closed-3F">#closed?</a>
     
-    <li><a href="#method-i-closed_read-3F">#closed_read?</a>
+    <li ><a href="#method-i-closed_read-3F">#closed_read?</a>
     
-    <li><a href="#method-i-closed_write-3F">#closed_write?</a>
+    <li ><a href="#method-i-closed_write-3F">#closed_write?</a>
     
-    <li><a href="#method-i-open_read">#open_read</a>
+    <li ><a href="#method-i-open_read">#open_read</a>
     
-    <li><a href="#method-i-open_write">#open_write</a>
+    <li ><a href="#method-i-open_write">#open_write</a>
     
-    <li><a href="#method-i-read-3F">#read?</a>
+    <li ><a href="#method-i-read-3F">#read?</a>
     
-    <li><a href="#method-i-reader">#reader</a>
+    <li ><a href="#method-i-reader">#reader</a>
     
-    <li><a href="#method-i-reopen">#reopen</a>
+    <li ><a href="#method-i-reopen">#reopen</a>
     
-    <li><a href="#method-i-write-3F">#write?</a>
+    <li ><a href="#method-i-write-3F">#write?</a>
     
-    <li><a href="#method-i-writer">#writer</a>
+    <li ><a href="#method-i-writer">#writer</a>
     
   </ul>
 </nav>
@@ -249,11 +264,12 @@
 <code>target</code> (followed by <code>separator</code>, if present).
 Returns <code>target</code>.</p>
           
+          
 
           
           <div class="method-source-code" id="dump-source">
             <pre><span class="ruby-comment"># File lib/libcdb.rb, line 70</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">target</span> = <span class="ruby-string">''</span>, <span class="ruby-identifier">separator</span> = <span class="ruby-identifier">$\</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">$/</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">target</span> = <span class="ruby-string">&#39;&#39;</span>, <span class="ruby-identifier">separator</span> = <span class="ruby-identifier">$\</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">$/</span>)
   <span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">cdb</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">cdb</span>.<span class="ruby-identifier">each_dump</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dump</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">target</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">dump</span>
@@ -299,12 +315,13 @@ Returns <code>target</code>.</p>
           <p>Opens <code>path</code> for reading and iterates over each key/value pair,
 or, if <code>key</code> is given, each value for <code>key</code>.</p>
           
+          
 
           
           <div class="method-source-code" id="foreach-source">
             <pre><span class="ruby-comment"># File lib/libcdb.rb, line 61</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">foreach</span>(<span class="ruby-identifier">path</span>, *<span class="ruby-identifier">key</span>)
-  <span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">cdb</span><span class="ruby-operator">|</span> <span class="ruby-identifier">cdb</span>.<span class="ruby-identifier">each</span>(*<span class="ruby-identifier">key</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span> <span class="ruby-keyword">yield</span> <span class="ruby-identifier">val</span> } }
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">foreach</span>(<span class="ruby-identifier">path</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">cdb</span><span class="ruby-operator">|</span> <span class="ruby-identifier">cdb</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">key</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span> <span class="ruby-keyword">yield</span> <span class="ruby-identifier">val</span> } }
 <span class="ruby-keyword">end</span></pre>
           </div><!-- foreach-source -->
           
@@ -339,7 +356,8 @@ href="CDB/Reader.html">Reader</a> and <a href="CDB/Writer.html">Writer</a>
 methods interchangeably by reopening <code>io</code> in the corresponding
 mode and instantiating a new <a href="CDB/Reader.html">Reader</a> or <a
 href="CDB/Writer.html">Writer</a> object with it. Note that <code>io</code>
-will be truncated each time it’s opened for writing.</p>
+will be truncated each time it&#39;s opened for writing.</p>
+          
           
 
           
@@ -405,6 +423,7 @@ Otherwise just returns the object.</p>
 <p><a href="CDB.html">CDB</a> (initially opened for writing)</p>
 </dd></dl>
           
+          
 
           
           <div class="method-source-code" id="open-source">
@@ -413,7 +432,7 @@ Otherwise just returns the object.</p>
   <span class="ruby-identifier">klass</span>, <span class="ruby-identifier">args</span> = <span class="ruby-identifier">_open_args</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">mode</span>)
 
   <span class="ruby-identifier">cdb</span> = <span class="ruby-keyword">begin</span>
-    <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span>(*<span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
   <span class="ruby-keyword">rescue</span>
     <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">close</span>
     <span class="ruby-identifier">raise</span>
@@ -450,11 +469,14 @@ Otherwise just returns the object.</p>
         <div class="method-heading">
           <span class="method-name">_open_args</span><span
             class="method-args">(path, mode)</span>
+          
           <span class="method-click-advice">click to toggle source</span>
+          
         </div>
         
 
         <div class="method-description">
+          
           
           
           
@@ -466,14 +488,14 @@ Otherwise just returns the object.</p>
   <span class="ruby-identifier">klass</span>, <span class="ruby-identifier">args</span> = <span class="ruby-keyword">self</span>, []
 
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">mode</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">'r+'</span>       <span class="ruby-keyword">then</span> <span class="ruby-identifier">args</span> = [<span class="ruby-identifier">mode</span> = <span class="ruby-constant">MODE_READ</span>]
-    <span class="ruby-keyword">when</span> <span class="ruby-string">'w+'</span>       <span class="ruby-keyword">then</span> <span class="ruby-identifier">args</span> = [       <span class="ruby-constant">MODE_WRITE</span>]
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;r+&#39;</span>       <span class="ruby-keyword">then</span> <span class="ruby-identifier">args</span> = [<span class="ruby-identifier">mode</span> = <span class="ruby-constant">MODE_READ</span>]
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;w+&#39;</span>       <span class="ruby-keyword">then</span> <span class="ruby-identifier">args</span> = [       <span class="ruby-constant">MODE_WRITE</span>]
     <span class="ruby-keyword">when</span> <span class="ruby-constant">MODE_READ</span>  <span class="ruby-keyword">then</span> <span class="ruby-identifier">klass</span>        = <span class="ruby-constant">Reader</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-constant">MODE_WRITE</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">klass</span>,  <span class="ruby-identifier">mode</span> = <span class="ruby-constant">Writer</span>, <span class="ruby-string">'w+'</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">MODE_WRITE</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">klass</span>,  <span class="ruby-identifier">mode</span> = <span class="ruby-constant">Writer</span>, <span class="ruby-string">&#39;w+&#39;</span>
     <span class="ruby-keyword">else</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;illegal access mode #{mode.inspect}&quot;</span>
   <span class="ruby-keyword">end</span>
 
-  [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">args</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">mode</span> <span class="ruby-operator">+</span> <span class="ruby-string">'b'</span>))]
+  [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">args</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">mode</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;b&#39;</span>))]
 <span class="ruby-keyword">end</span></pre>
           </div><!-- _open_args-source -->
           
@@ -509,8 +531,9 @@ Otherwise just returns the object.</p>
           
           <p>Closes both the <a href="CDB.html#method-i-reader">reader</a> and the <a
 href="CDB.html#method-i-writer">writer</a>, as well as <a
-href="CDB.html#attribute-i-io">io</a>. Doesn’t raise an IOError if either
-of them is already closed.</p>
+href="CDB.html#attribute-i-io">io</a>. Doesn&#39;t raise an IOError if
+either of them is already closed.</p>
+          
           
 
           
@@ -552,6 +575,7 @@ href="CDB.html#method-i-reader">reader</a> (and <a
 href="CDB.html#attribute-i-io">io</a> with it). Otherwise, if
 <code>strict</code> is true, raises an IOError.</p>
           
+          
 
           
           <div class="method-source-code" id="close_read-source">
@@ -561,7 +585,7 @@ href="CDB.html#attribute-i-io">io</a> with it). Otherwise, if
     <span class="ruby-ivar">@reader</span>.<span class="ruby-identifier">close</span>
     <span class="ruby-ivar">@reader</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">strict</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">IOError</span>, <span class="ruby-string">'not opened for reading'</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">IOError</span>, <span class="ruby-string">&#39;not opened for reading&#39;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- close_read-source -->
@@ -595,6 +619,7 @@ href="CDB.html#method-i-writer">writer</a> (and <a
 href="CDB.html#attribute-i-io">io</a> with it). Otherwise, if
 <code>strict</code> is true, raises an IOError.</p>
           
+          
 
           
           <div class="method-source-code" id="close_write-source">
@@ -604,7 +629,7 @@ href="CDB.html#attribute-i-io">io</a> with it). Otherwise, if
     <span class="ruby-ivar">@writer</span>.<span class="ruby-identifier">close</span>
     <span class="ruby-ivar">@writer</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">strict</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">IOError</span>, <span class="ruby-string">'not opened for writing'</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">IOError</span>, <span class="ruby-string">&#39;not opened for writing&#39;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- close_write-source -->
@@ -636,6 +661,7 @@ href="CDB.html#attribute-i-io">io</a> with it). Otherwise, if
           <p>Whether <em>cdb</em> is closed. See <a
 href="CDB.html#method-i-closed_read-3F">closed_read?</a> and <a
 href="CDB.html#method-i-closed_write-3F">closed_write?</a>.</p>
+          
           
 
           
@@ -673,6 +699,7 @@ href="CDB.html#method-i-closed_write-3F">closed_write?</a>.</p>
           <p>Whether <a href="CDB.html#method-i-reader">reader</a> is closed if
 <em>cdb</em> is currently opened for reading.</p>
           
+          
 
           
           <div class="method-source-code" id="closed_read-3F-source">
@@ -708,6 +735,7 @@ href="CDB.html#method-i-closed_write-3F">closed_write?</a>.</p>
           
           <p>Whether <a href="CDB.html#method-i-writer">writer</a> is closed if
 <em>cdb</em> is currently opened for writing.</p>
+          
           
 
           
@@ -745,6 +773,7 @@ href="CDB.html#method-i-closed_write-3F">closed_write?</a>.</p>
           <p>Opens <em>cdb</em> for reading and reopens <a
 href="CDB.html#attribute-i-io">io</a> accordingly. Closes <a
 href="CDB.html#method-i-writer">writer</a> if open.</p>
+          
           
 
           
@@ -785,6 +814,7 @@ href="CDB.html#attribute-i-io">io</a> accordingly. Closes <a
 href="CDB.html#method-i-reader">reader</a> if open. Note that <a
 href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
           
+          
 
           
           <div class="method-source-code" id="open_write-source">
@@ -820,6 +850,7 @@ href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
         <div class="method-description">
           
           <p>Whether <em>cdb</em> is currently opened for reading.</p>
+          
           
 
           
@@ -857,6 +888,7 @@ href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
           <p>The <a href="CDB/Reader.html">Reader</a> object associated with
 <em>cdb</em>.</p>
           
+          
 
           
           <div class="method-source-code" id="reader-source">
@@ -891,6 +923,7 @@ href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
         <div class="method-description">
           
           <p>Whether <em>cdb</em> is currently opened for writing.</p>
+          
           
 
           
@@ -927,6 +960,7 @@ href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
           
           <p>The <a href="CDB/Writer.html">Writer</a> object associated with
 <em>cdb</em>.</p>
+          
           
 
           
@@ -970,6 +1004,7 @@ href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
           <p>Reopens <a href="CDB.html#attribute-i-io">io</a> in <code>mode</code> and
 returns it.</p>
           
+          
 
           
           <div class="method-source-code" id="reopen-source">
@@ -978,9 +1013,9 @@ returns it.</p>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">io</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">mode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">new_mode</span>
 
   <span class="ruby-ivar">@mode</span> = <span class="ruby-identifier">new_mode</span>
-  <span class="ruby-identifier">new_mode</span> <span class="ruby-operator">+=</span> <span class="ruby-string">'+'</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_mode</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MODE_WRITE</span>
+  <span class="ruby-identifier">new_mode</span> <span class="ruby-operator">+=</span> <span class="ruby-string">&#39;+&#39;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_mode</span> <span class="ruby-operator">==</span> <span class="ruby-constant">MODE_WRITE</span>
 
-  <span class="ruby-identifier">io</span>.<span class="ruby-identifier">reopen</span>(<span class="ruby-identifier">io</span>.<span class="ruby-identifier">path</span>, <span class="ruby-identifier">new_mode</span> <span class="ruby-operator">+</span> <span class="ruby-string">'b'</span>)
+  <span class="ruby-identifier">io</span>.<span class="ruby-identifier">reopen</span>(<span class="ruby-identifier">io</span>.<span class="ruby-identifier">path</span>, <span class="ruby-identifier">new_mode</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;b&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- reopen-source -->
           
@@ -1001,7 +1036,7 @@ returns it.</p>
 
 <footer id="validator-badges">
   <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
   <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
 </footer>
 
