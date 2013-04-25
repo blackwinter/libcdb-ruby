@@ -33,13 +33,13 @@ RCDB_READER_DEFINE_READ(data)
 
 /* Helper method */
 static VALUE
-_rcdb_reader_iter_push(VALUE val, VALUE ary) {
+rcdb_reader_iter_push(VALUE val, VALUE ary) {
   return rb_ary_push(ary, val);
 }
 
 /* Helper method */
 static VALUE
-_rcdb_reader_iter_aset(VALUE pair, VALUE hash) {
+rcdb_reader_iter_aset(VALUE pair, VALUE hash) {
   VALUE key = rb_ary_entry(pair, 0), val = rb_ary_entry(pair, 1), old;
 
   if (!st_lookup(RHASH_TBL(hash), key, 0)) {
@@ -63,19 +63,19 @@ _rcdb_reader_iter_aset(VALUE pair, VALUE hash) {
 
 /* Helper method */
 static VALUE
-_rcdb_reader_break_equal(VALUE val, VALUE ary) {
+rcdb_reader_break_equal(VALUE val, VALUE ary) {
   RCDB_READER_BREAK_EQUAL(val, Qtrue)
 }
 
 /* Helper method */
 static VALUE
-_rcdb_reader_break_equal2(VALUE pair, VALUE ary) {
+rcdb_reader_break_equal2(VALUE pair, VALUE ary) {
   RCDB_READER_BREAK_EQUAL(rb_ary_entry(pair, 1), rb_ary_entry(pair, 0))
 }
 
 /* Helper method */
 static VALUE
-_rcdb_reader_break_shift(VALUE val, VALUE ary) {
+rcdb_reader_break_shift(VALUE val, VALUE ary) {
   rb_ary_shift(ary);
   rb_iter_break();
 
@@ -84,14 +84,14 @@ _rcdb_reader_break_shift(VALUE val, VALUE ary) {
 
 /* Helper method */
 static VALUE
-_rcdb_reader_iter_inc(VALUE val, long *i) {
+rcdb_reader_iter_inc(VALUE val, long *i) {
   ++*i;
   return Qnil;
 }
 
 /* Helper method */
 static VALUE
-_rcdb_reader_iter_dump(VALUE val, VALUE str) {
+rcdb_reader_iter_dump(VALUE val, VALUE str) {
   rb_str_append(str, val);
   rb_str_cat2(str, "\n");
 
@@ -100,7 +100,7 @@ _rcdb_reader_iter_dump(VALUE val, VALUE str) {
 
 /* Helper method */
 static VALUE
-_rcdb_reader_dump_pair(VALUE key, VALUE val) {
+rcdb_reader_dump_pair(VALUE key, VALUE val) {
   VALUE str = rb_str_new2("");
 
   rb_str_cat2(str, "+");
@@ -117,15 +117,15 @@ _rcdb_reader_dump_pair(VALUE key, VALUE val) {
 
 /* Helper method */
 static VALUE
-_rcdb_reader_yield_dump(VALUE pair, VALUE ary) {
-  return rb_yield(_rcdb_reader_dump_pair(
+rcdb_reader_yield_dump(VALUE pair, VALUE ary) {
+  return rb_yield(rcdb_reader_dump_pair(
     rb_ary_entry(pair, 0), rb_ary_entry(pair, 1)));
 }
 
 /* Helper method */
 static VALUE
-_rcdb_reader_yield_dump2(VALUE val, VALUE ary) {
-  return rb_yield(_rcdb_reader_dump_pair(rb_ary_entry(ary, 0), val));
+rcdb_reader_yield_dump2(VALUE val, VALUE ary) {
+  return rb_yield(rcdb_reader_dump_pair(rb_ary_entry(ary, 0), val));
 }
 
 RCDB_READER_DEFINE_CALL(each)
@@ -160,7 +160,7 @@ rcdb_reader_each(int argc, VALUE *argv, VALUE self) {
     }
 
     while (cdb_findnext(&cdbf) > 0) {
-      rb_yield(_rcdb_reader_read_data(cdb));
+      rb_yield(rcdb_reader_read_data(cdb));
     }
   }
   else {
@@ -168,8 +168,8 @@ rcdb_reader_each(int argc, VALUE *argv, VALUE self) {
 
     while (cdb_seqnext(&cdbp, cdb) > 0) {
       rb_yield(rb_ary_new3(2,
-        _rcdb_reader_read_key(cdb),
-        _rcdb_reader_read_data(cdb)));
+        rcdb_reader_read_key(cdb),
+        rcdb_reader_read_data(cdb)));
     }
   }
 
@@ -188,7 +188,7 @@ rcdb_reader_each(int argc, VALUE *argv, VALUE self) {
 static VALUE
 rcdb_reader_each_dump(int argc, VALUE *argv, VALUE self) {
   VALUE key, args = rb_ary_new3(1, self), ary = rb_ary_new();
-  VALUE (*block)(ANYARGS) = _rcdb_reader_yield_dump;
+  VALUE (*block)(ANYARGS) = rcdb_reader_yield_dump;
 
   RCDB_RETURN_ENUMERATOR(self, argc, argv, 1);
 
@@ -196,10 +196,10 @@ rcdb_reader_each_dump(int argc, VALUE *argv, VALUE self) {
     rb_ary_push(ary,  key);
     rb_ary_push(args, key);
 
-    block = _rcdb_reader_yield_dump2;
+    block = rcdb_reader_yield_dump2;
   }
 
-  rb_iterate(_rcdb_reader_call_each, args, block, ary);
+  rb_iterate(rcdb_reader_call_each, args, block, ary);
 
   return self;
 }
@@ -222,7 +222,7 @@ rcdb_reader_each_key(VALUE self) {
   cdb_seqinit(&cdbp, cdb);
 
   while (cdb_seqnext(&cdbp, cdb) > 0) {
-    if (!st_lookup(RHASH_TBL(hash), key = _rcdb_reader_read_key(cdb), 0)) {
+    if (!st_lookup(RHASH_TBL(hash), key = rcdb_reader_read_key(cdb), 0)) {
       rb_hash_aset(hash, key, Qtrue);
       rb_yield(key);
     }
@@ -248,7 +248,7 @@ rcdb_reader_each_value(VALUE self) {
   cdb_seqinit(&cdbp, cdb);
 
   while (cdb_seqnext(&cdbp, cdb) > 0) {
-    rb_yield(_rcdb_reader_read_data(cdb));
+    rb_yield(rcdb_reader_read_data(cdb));
   }
 
   return self;
@@ -283,7 +283,7 @@ rcdb_reader_fetch_first(VALUE self, VALUE key) {
   RCDB_READER_GET(self, cdb);
 
   if (cdb_find(cdb, RSTRING_PTR(key), RSTRING_LEN(key)) > 0) {
-    val = _rcdb_reader_read_data(cdb);
+    val = rcdb_reader_read_data(cdb);
   }
 
   return val;

@@ -5,7 +5,7 @@
 
 #define RCDB_READER_DEFINE_CALL(iter) \
 static VALUE \
-_rcdb_reader_call_##iter(VALUE args) {\
+rcdb_reader_call_##iter(VALUE args) {\
   VALUE self = rb_ary_shift(args);\
   return rb_funcall2(self, rb_intern(#iter),\
     RARRAY_LEN(args), RARRAY_PTR(args));\
@@ -13,7 +13,7 @@ _rcdb_reader_call_##iter(VALUE args) {\
 
 #define RCDB_READER_ITERATE0(method, block, arg1, arg2) \
   VALUE arg = arg1;\
-  rb_iterate(_rcdb_reader_call_##method, arg2, _rcdb_reader_##block, arg);
+  rb_iterate(rcdb_reader_call_##method, arg2, rcdb_reader_##block, arg);
 
 #define RCDB_READER_ITERATE1(method, block, arg1) \
   RCDB_READER_ITERATE0(method, block, arg1, rb_ary_new3(1, self))
@@ -36,7 +36,7 @@ _rcdb_reader_call_##iter(VALUE args) {\
 
 #define RCDB_READER_DEFINE_READ(what) \
 static VALUE \
-_rcdb_reader_read_##what(struct cdb *cdb) {\
+rcdb_reader_read_##what(struct cdb *cdb) {\
   size_t len;\
   VALUE ret;\
 \
