@@ -355,7 +355,7 @@ rcdb_reader_values(VALUE self) {
 static VALUE
 rcdb_reader_values_at(int argc, VALUE *argv, VALUE self) {
   VALUE ary = rb_ary_new();
-  long i;
+  int i;
 
   for (i = 0; i < argc; i++) {
     rb_ary_push(ary, rcdb_reader_fetch(self, argv[i]));
