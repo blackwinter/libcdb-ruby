@@ -68,11 +68,11 @@ describe LibCDB::CDB::Reader do
     end
 
     it "should know if it doesn't have a key" do
-      @db.should_not have_key('key3')
+      @db.should_not have_key('k3')
     end
 
     it "should know if it doesn't have a value" do
-      @db.should_not have_value('value3.2')
+      @db.should_not have_value('v3.2')
     end
 
     it "should dump itself" do
@@ -108,11 +108,11 @@ describe LibCDB::CDB::Reader do
     end
 
     it "should know its size" do
-      @db.size.should == 11
+      @db.size.should == TEST_DATA.size
     end
 
     it "should know its total" do
-      @db.total.should == 56
+      @db.total.should == TEST_DATA.values.flatten.size
     end
 
     it "should know its keys" do
@@ -124,27 +124,27 @@ describe LibCDB::CDB::Reader do
     end
 
     it "should know if it has a key" do
-      @db.should have_key('key3')
+      @db.should have_key('k3')
     end
 
     it "should know if it doesn't have a key" do
-      @db.should_not have_key('key33')
+      @db.should_not have_key('none')
     end
 
     it "should know if it has a value" do
-      @db.should have_value('value3.2')
+      @db.should have_value('v3.2')
     end
 
     it "should know if it doesn't have a value" do
-      @db.should_not have_value('value33.22')
+      @db.should_not have_value('none')
     end
 
     it "should get a single value" do
-      @db['key1'].should == 'value1.1'
+      @db['k1'].should == 'v1.1'
     end
 
     it "should not get non-existent value" do
-      @db['key33'].should be_nil
+      @db['none'].should be_nil
     end
 
     it "should get each value" do
@@ -162,21 +162,21 @@ describe LibCDB::CDB::Reader do
     end
 
     it "should get last value" do
-      @db.fetch_last('key10').should == 'value10.10'
+      @db.fetch_last('k10').should == 'v10.10'
     end
 
     it "should find the key for a value" do
-      @db.key('value3.2').should == 'key3'
+      @db.key('v3.2').should == 'k3'
     end
 
     it "should not find the key for a non-existent value" do
-      @db.key('value33.22').should be_nil
+      @db.key('none').should be_nil
     end
 
     it "should dump records for key" do
       d = []
-      @db.each_dump('key3') { |e| d << e }
-      d.should == %w[+4,8:key3->value3.1 +4,8:key3->value3.2 +4,8:key3->value3.3]
+      @db.each_dump('k3') { |e| d << e }
+      d.should == %w[+2,4:k3->v3.1 +2,4:k3->v3.2 +2,4:k3->v3.3]
     end
 
     it "should convert itself into a hash" do
