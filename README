@@ -8,7 +8,7 @@ This documentation refers to libcdb-ruby version 0.0.4
 == DESCRIPTION
 
 The libcdb-ruby library provides Ruby bindings for the
-TinyCDB[http://corpit.ru/mjt/tinycdb.html] package for
+TinyCDB[http://www.corpit.ru/mjt/tinycdb.html] package for
 creating and reading {constant databases}[http://cr.yp.to/cdb.html].
 
   require 'libcdb'
@@ -65,7 +65,7 @@ creating and reading {constant databases}[http://cr.yp.to/cdb.html].
 <b></b>
 * Ruby 1.8.7+ or 1.9+ (see {below}[rdoc-label:label-SUPPORTED+PLATFORMS]
   for details)
-* TinyCDB[http://corpit.ru/mjt/tinycdb.html] headers (not needed when
+* TinyCDB[http://www.corpit.ru/mjt/tinycdb.html] headers (not needed when
   installing the fat binary gem on Windows)
 
   Debian/Ubuntu:: +libcdb-dev+
@@ -87,7 +87,7 @@ Windows:: MRI 1.9 only (Tested on 32-bit Windows XP with 1.9.2p290 and 1.9.3p194
 Documentation:: http://blackwinter.github.com/libcdb-ruby
 Source code::   http://github.com/blackwinter/libcdb-ruby
 RubyGem::       http://rubygems.org/gems/libcdb-ruby
-TinyCDB::       http://corpit.ru/mjt/tinycdb.html
+TinyCDB::       http://www.corpit.ru/mjt/tinycdb.html
 CDB::           http://cr.yp.to/cdb.html
 
 
