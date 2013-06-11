@@ -45,7 +45,15 @@ module LibCDB
           begin
             yield cdb
           ensure
-            cdb.close
+            err = $!
+
+            begin
+              cdb.close
+            rescue
+              raise unless err
+            end
+
+            raise err if err
           end
         else
           cdb
