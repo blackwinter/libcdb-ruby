@@ -99,7 +99,7 @@ rcdb_writer_put_value(struct cdb_make *cdbm, VALUE key, VALUE val, enum cdb_put_
       }
 
       for (i = 0; i < RARRAY_LEN(val); i++) {
-        rcdb_writer_put_pair(cdbm, key, RARRAY_PTR(val)[i], mode);
+        rcdb_writer_put_pair(cdbm, key, rb_ary_entry(val, i), mode);
       }
 
       break;
@@ -113,7 +113,7 @@ rcdb_writer_put_value(struct cdb_make *cdbm, VALUE key, VALUE val, enum cdb_put_
 static VALUE
 rcdb_writer_put(int argc, VALUE *argv, VALUE self, enum cdb_put_mode mode) {
   struct cdb_make *cdbm = NULL;
-  VALUE arg, val;
+  VALUE arg, val, tmp;
   long i;
 
   RCDB_WRITER_GET(self, cdbm);
@@ -127,7 +127,7 @@ rcdb_writer_put(int argc, VALUE *argv, VALUE self, enum cdb_put_mode mode) {
           val = rb_str_new2("");
 
           for (i = 0; i < RARRAY_LEN(arg); i++) {
-            rcdb_writer_put_pair(cdbm, RARRAY_PTR(arg)[i], val, mode);
+            rcdb_writer_put_pair(cdbm, rb_ary_entry(arg, i), val, mode);
           }
 
           break;
@@ -136,9 +136,11 @@ rcdb_writer_put(int argc, VALUE *argv, VALUE self, enum cdb_put_mode mode) {
           st_foreach(RHASH_TBL(arg), rcdb_writer_push_pair, val);
 
           for (i = 0; i < RARRAY_LEN(val); i++) {
+            tmp = rb_ary_entry(val, i);
+
             rcdb_writer_put_value(cdbm,
-              rb_ary_entry(RARRAY_PTR(val)[i], 0),
-              rb_ary_entry(RARRAY_PTR(val)[i], 1),
+              rb_ary_entry(tmp, 0),
+              rb_ary_entry(tmp, 1),
               mode);
           }
 
