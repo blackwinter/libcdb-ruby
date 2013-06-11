@@ -25,7 +25,8 @@ begin
       :extension => {
         :cross_config_options => cco,
         :ruby_versions => RUBY_VERSION
-      }
+      },
+      required_ruby_version: '>= 1.9.2'
     }
   }}
 rescue LoadError => err

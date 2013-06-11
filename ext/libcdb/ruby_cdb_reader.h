@@ -3,28 +3,20 @@
 
 #define RCDB_READER_GET(obj, ptr) RCDB_GET_STRUCT(read, cdb, obj, ptr)
 
-#define RCDB_READER_DEFINE_CALL(iter) \
-static VALUE \
-rcdb_reader_call_##iter(VALUE args) {\
-  VALUE self = rb_ary_shift(args);\
-  return rb_funcall2(self, rb_intern(#iter),\
-    RARRAY_LEN(args), RARRAY_PTR(args));\
-}
+#define RCDB_READER_ITERATE0(method, block, arg) \
+  rb_block_call(self, rb_intern(#method), 1, &key, rcdb_reader_##block, arg);
 
-#define RCDB_READER_ITERATE0(method, block, arg1, arg2) \
-  VALUE arg = arg1;\
-  rb_iterate(rcdb_reader_call_##method, arg2, rcdb_reader_##block, arg);
+#define RCDB_READER_ITERATE1(method, block, arg) \
+  VALUE ret = arg;\
+  rb_block_call(self, rb_intern(#method), 0, 0, rcdb_reader_##block, ret);
 
-#define RCDB_READER_ITERATE1(method, block, arg1) \
-  RCDB_READER_ITERATE0(method, block, arg1, rb_ary_new3(1, self))
+#define RCDB_READER_ITERATE(method, block, arg) \
+  RCDB_READER_ITERATE1(method, block, arg)\
+  return ret;
 
-#define RCDB_READER_ITERATE(method, block, arg1) \
-  RCDB_READER_ITERATE1(method, block, arg1)\
-  return arg;
-
-#define RCDB_READER_ITERATE_ARY(method, block, arg1) \
-  RCDB_READER_ITERATE1(method, block, arg1)\
-  return rb_ary_entry(arg, 0);
+#define RCDB_READER_ITERATE_ARY(method, block, arg) \
+  RCDB_READER_ITERATE1(method, block, arg)\
+  return rb_ary_entry(ret, 0);
 
 #define RCDB_READER_BREAK_EQUAL(val, ret) \
   if (RTEST(rb_funcall(val, rb_intern("=="), 1, rb_ary_entry(ary, 1)))) {\

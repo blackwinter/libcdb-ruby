@@ -128,11 +128,6 @@ rcdb_reader_yield_dump2(VALUE val, VALUE ary) {
   return rb_yield(rcdb_reader_dump_pair(rb_ary_entry(ary, 0), val));
 }
 
-RCDB_READER_DEFINE_CALL(each)
-RCDB_READER_DEFINE_CALL(each_key)
-RCDB_READER_DEFINE_CALL(each_value)
-RCDB_READER_DEFINE_CALL(each_dump)
-
 /*
  * call-seq:
  *   reader.each { |key, val| ... } -> reader
@@ -187,19 +182,16 @@ rcdb_reader_each(int argc, VALUE *argv, VALUE self) {
  */
 static VALUE
 rcdb_reader_each_dump(int argc, VALUE *argv, VALUE self) {
-  VALUE key, args = rb_ary_new3(1, self), ary = rb_ary_new();
-  VALUE (*block)(ANYARGS) = rcdb_reader_yield_dump;
+  VALUE key;
 
   RCDB_RETURN_ENUMERATOR(self, argc, argv, 1);
 
   if (rb_scan_args(argc, argv, "01", &key) == 1 && !NIL_P(key)) {
-    rb_ary_push(ary,  key);
-    rb_ary_push(args, key);
-
-    block = rcdb_reader_yield_dump2;
+    RCDB_READER_ITERATE0(each, yield_dump2, rb_ary_new3(1, key))
   }
-
-  rb_iterate(rcdb_reader_call_each, args, block, ary);
+  else {
+    RCDB_READER_ITERATE1(each, yield_dump, rb_ary_new())
+  }
 
   return self;
 }
@@ -262,10 +254,9 @@ rcdb_reader_each_value(VALUE self) {
  */
 static VALUE
 rcdb_reader_fetch(VALUE self, VALUE key) {
-  RCDB_READER_ITERATE0(each, iter_push,
-    rb_ary_new(), rb_ary_new3(2, self, key))
-
-  return arg;
+  VALUE ary = rb_ary_new();
+  RCDB_READER_ITERATE0(each, iter_push, ary)
+  return ary;
 }
 
 /*
