@@ -21,6 +21,7 @@ begin
       :summary   => %q{Ruby bindings for CDB Constant Databases.},
       :author    => %q{Jens Wille},
       :email     => %q{jens.wille@gmail.com},
+      :license   => %q{AGPL},
       :homepage  => :blackwinter,
       :extension => {
         :cross_config_options => cco,
