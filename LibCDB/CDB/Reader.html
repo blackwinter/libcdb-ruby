@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class LibCDB::CDB::Reader - libcdb-ruby Application documentation (v0.0.4)</title>
+<title>class LibCDB::CDB::Reader - libcdb-ruby Application documentation (v0.1.0)</title>
 
 <link type="text/css" media="screen" href="../../rdoc.css" rel="stylesheet">
 
@@ -467,7 +467,7 @@ rcdb_reader_each(int argc, VALUE *argv, VALUE self) {
     }
 
     while (cdb_findnext(&amp;cdbf) &gt; 0) {
-      rb_yield(_rcdb_reader_read_data(cdb));
+      rb_yield(rcdb_reader_read_data(cdb));
     }
   }
   else {
@@ -475,8 +475,8 @@ rcdb_reader_each(int argc, VALUE *argv, VALUE self) {
 
     while (cdb_seqnext(&amp;cdbp, cdb) &gt; 0) {
       rb_yield(rb_ary_new3(2,
-        _rcdb_reader_read_key(cdb),
-        _rcdb_reader_read_data(cdb)));
+        rcdb_reader_read_key(cdb),
+        rcdb_reader_read_data(cdb)));
     }
   }
 
@@ -532,19 +532,16 @@ is given, an enumerator.</p>
           <div class="method-source-code" id="each_dump-source">
             <pre>static VALUE
 rcdb_reader_each_dump(int argc, VALUE *argv, VALUE self) {
-  VALUE key, args = rb_ary_new3(1, self), ary = rb_ary_new();
-  VALUE (*block)(ANYARGS) = _rcdb_reader_yield_dump;
+  VALUE key;
 
   RCDB_RETURN_ENUMERATOR(self, argc, argv, 1);
 
   if (rb_scan_args(argc, argv, &quot;01&quot;, &amp;key) == 1 &amp;&amp; !NIL_P(key)) {
-    rb_ary_push(ary,  key);
-    rb_ary_push(args, key);
-
-    block = _rcdb_reader_yield_dump2;
+    RCDB_READER_ITERATE0(each, yield_dump2, rb_ary_new3(1, key))
   }
-
-  rb_iterate(_rcdb_reader_call_each, args, block, ary);
+  else {
+    RCDB_READER_ITERATE1(each, yield_dump, rb_ary_new())
+  }
 
   return self;
 }</pre>
@@ -598,7 +595,7 @@ rcdb_reader_each_key(VALUE self) {
   cdb_seqinit(&amp;cdbp, cdb);
 
   while (cdb_seqnext(&amp;cdbp, cdb) &gt; 0) {
-    if (!st_lookup(RHASH_TBL(hash), key = _rcdb_reader_read_key(cdb), 0)) {
+    if (!st_lookup(RHASH_TBL(hash), key = rcdb_reader_read_key(cdb), 0)) {
       rb_hash_aset(hash, key, Qtrue);
       rb_yield(key);
     }
@@ -655,7 +652,7 @@ rcdb_reader_each_value(VALUE self) {
   cdb_seqinit(&amp;cdbp, cdb);
 
   while (cdb_seqnext(&amp;cdbp, cdb) &gt; 0) {
-    rb_yield(_rcdb_reader_read_data(cdb));
+    rb_yield(rcdb_reader_read_data(cdb));
   }
 
   return self;
@@ -731,10 +728,9 @@ rcdb_reader_empty_p(VALUE self) {
           <div class="method-source-code" id="fetch-source">
             <pre>static VALUE
 rcdb_reader_fetch(VALUE self, VALUE key) {
-  RCDB_READER_ITERATE0(each, iter_push,
-    rb_ary_new(), rb_ary_new3(2, self, key))
-
-  return arg;
+  VALUE ary = rb_ary_new();
+  RCDB_READER_ITERATE0(each, iter_push, ary)
+  return ary;
 }</pre>
           </div><!-- fetch-source -->
           
@@ -810,7 +806,7 @@ rcdb_reader_fetch_first(VALUE self, VALUE key) {
   RCDB_READER_GET(self, cdb);
 
   if (cdb_find(cdb, RSTRING_PTR(key), RSTRING_LEN(key)) &gt; 0) {
-    val = _rcdb_reader_read_data(cdb);
+    val = rcdb_reader_read_data(cdb);
   }
 
   return val;
@@ -1477,7 +1473,7 @@ rcdb_reader_values(VALUE self) {
             <pre>static VALUE
 rcdb_reader_values_at(int argc, VALUE *argv, VALUE self) {
   VALUE ary = rb_ary_new();
-  long i;
+  int i;
 
   for (i = 0; i &lt; argc; i++) {
     rb_ary_push(ary, rcdb_reader_fetch(self, argv[i]));

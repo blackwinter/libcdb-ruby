@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class LibCDB::CDB - libcdb-ruby Application documentation (v0.0.4)</title>
+<title>class LibCDB::CDB - libcdb-ruby Application documentation (v0.1.0)</title>
 
 <link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
 
@@ -268,7 +268,7 @@ Returns <code>target</code>.</p>
 
           
           <div class="method-source-code" id="dump-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 70</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 78</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">dump</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">target</span> = <span class="ruby-string">&#39;&#39;</span>, <span class="ruby-identifier">separator</span> = <span class="ruby-identifier">$\</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">$/</span>)
   <span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">cdb</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">cdb</span>.<span class="ruby-identifier">each_dump</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dump</span><span class="ruby-operator">|</span>
@@ -319,7 +319,7 @@ or, if <code>key</code> is given, each value for <code>key</code>.</p>
 
           
           <div class="method-source-code" id="foreach-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 61</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 69</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">foreach</span>(<span class="ruby-identifier">path</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">key</span>)
   <span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">cdb</span><span class="ruby-operator">|</span> <span class="ruby-identifier">cdb</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">key</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span> <span class="ruby-keyword">yield</span> <span class="ruby-identifier">val</span> } }
 <span class="ruby-keyword">end</span></pre>
@@ -362,7 +362,7 @@ will be truncated each time it&#39;s opened for writing.</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 107</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 115</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">io</span>, <span class="ruby-identifier">mode</span> = <span class="ruby-constant">MODE_WRITE</span>)
   <span class="ruby-ivar">@io</span>, <span class="ruby-ivar">@mode</span> = <span class="ruby-identifier">io</span>, <span class="ruby-identifier">mode</span>
 
@@ -442,7 +442,15 @@ Otherwise just returns the object.</p>
     <span class="ruby-keyword">begin</span>
       <span class="ruby-keyword">yield</span> <span class="ruby-identifier">cdb</span>
     <span class="ruby-keyword">ensure</span>
-      <span class="ruby-identifier">cdb</span>.<span class="ruby-identifier">close</span>
+      <span class="ruby-identifier">err</span> = <span class="ruby-identifier">$!</span>
+
+      <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">cdb</span>.<span class="ruby-identifier">close</span>
+      <span class="ruby-keyword">rescue</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">err</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-identifier">raise</span> <span class="ruby-identifier">err</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">err</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">cdb</span>
@@ -483,7 +491,7 @@ Otherwise just returns the object.</p>
 
           
           <div class="method-source-code" id="_open_args-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 83</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">_open_args</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">mode</span>)
   <span class="ruby-identifier">klass</span>, <span class="ruby-identifier">args</span> = <span class="ruby-keyword">self</span>, []
 
@@ -538,7 +546,7 @@ either of them is already closed.</p>
 
           
           <div class="method-source-code" id="close-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 217</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 225</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">close</span>
   <span class="ruby-identifier">close_read</span>(<span class="ruby-keyword">false</span>)
   <span class="ruby-identifier">close_write</span>(<span class="ruby-keyword">false</span>)
@@ -579,7 +587,7 @@ href="CDB.html#attribute-i-io">io</a> with it). Otherwise, if
 
           
           <div class="method-source-code" id="close_read-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 189</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 197</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">close_read</span>(<span class="ruby-identifier">strict</span> = <span class="ruby-keyword">true</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">read?</span>
     <span class="ruby-ivar">@reader</span>.<span class="ruby-identifier">close</span>
@@ -623,7 +631,7 @@ href="CDB.html#attribute-i-io">io</a> with it). Otherwise, if
 
           
           <div class="method-source-code" id="close_write-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 203</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 211</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">close_write</span>(<span class="ruby-identifier">strict</span> = <span class="ruby-keyword">true</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">write?</span>
     <span class="ruby-ivar">@writer</span>.<span class="ruby-identifier">close</span>
@@ -666,7 +674,7 @@ href="CDB.html#method-i-closed_write-3F">closed_write?</a>.</p>
 
           
           <div class="method-source-code" id="closed-3F-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 243</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 251</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">closed?</span>
   <span class="ruby-identifier">read?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">closed_read?</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">write?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">closed_write?</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
@@ -703,7 +711,7 @@ href="CDB.html#method-i-closed_write-3F">closed_write?</a>.</p>
 
           
           <div class="method-source-code" id="closed_read-3F-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 227</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 235</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">closed_read?</span>
   <span class="ruby-identifier">reader</span>.<span class="ruby-identifier">closed?</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">read?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -740,7 +748,7 @@ href="CDB.html#method-i-closed_write-3F">closed_write?</a>.</p>
 
           
           <div class="method-source-code" id="closed_write-3F-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 235</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 243</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">closed_write?</span>
   <span class="ruby-identifier">writer</span>.<span class="ruby-identifier">closed?</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">write?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -778,7 +786,7 @@ href="CDB.html#method-i-writer">writer</a> if open.</p>
 
           
           <div class="method-source-code" id="open_read-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 169</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 177</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">open_read</span>
   <span class="ruby-identifier">close_write</span>(<span class="ruby-keyword">false</span>)
   <span class="ruby-ivar">@reader</span> = <span class="ruby-constant">Reader</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">reopen</span>(<span class="ruby-constant">MODE_READ</span>))
@@ -818,7 +826,7 @@ href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
 
           
           <div class="method-source-code" id="open_write-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 179</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 187</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">open_write</span>
   <span class="ruby-identifier">close_read</span>(<span class="ruby-keyword">false</span>)
   <span class="ruby-ivar">@writer</span> = <span class="ruby-constant">Writer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">reopen</span>(<span class="ruby-constant">MODE_WRITE</span>))
@@ -855,7 +863,7 @@ href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
 
           
           <div class="method-source-code" id="read-3F-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 152</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 160</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">read?</span>
   <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-ivar">@reader</span>
 <span class="ruby-keyword">end</span></pre>
@@ -892,7 +900,7 @@ href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
 
           
           <div class="method-source-code" id="reader-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 127</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 135</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reader</span>
   <span class="ruby-ivar">@reader</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">open_read</span>
 <span class="ruby-keyword">end</span></pre>
@@ -928,7 +936,7 @@ href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
 
           
           <div class="method-source-code" id="write-3F-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 160</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 168</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">write?</span>
   <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-ivar">@writer</span>
 <span class="ruby-keyword">end</span></pre>
@@ -965,7 +973,7 @@ href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
 
           
           <div class="method-source-code" id="writer-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 135</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 143</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">writer</span>
   <span class="ruby-ivar">@writer</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">open_write</span>
 <span class="ruby-keyword">end</span></pre>
@@ -1008,7 +1016,7 @@ returns it.</p>
 
           
           <div class="method-source-code" id="reopen-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 253</span>
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 261</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reopen</span>(<span class="ruby-identifier">new_mode</span> = <span class="ruby-constant">MODE_READ</span>)
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">io</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">mode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">new_mode</span>
 
