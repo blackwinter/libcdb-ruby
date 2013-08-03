@@ -5,8 +5,8 @@ module LibCDB
     module Version
 
       MAJOR = 0
-      MINOR = 0
-      TINY  = 4
+      MINOR = 1
+      TINY  = 0
 
       class << self
 
