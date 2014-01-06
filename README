@@ -75,8 +75,8 @@ creating and reading {constant databases}[http://cr.yp.to/cdb.html].
 == SUPPORTED PLATFORMS
 
 <b></b>
-Linux::   MRI 1.9 & 2.0 (Tested on 64-bit Ubuntu GNU/Linux with 1.9.2p323,
-          1.9.3p286 and 2.0.0p119)
+Linux::   MRI 1.9, 2.0 & 2.1 (Tested on 64-bit Ubuntu GNU/Linux with 1.9.2p323,
+          1.9.3p488, 2.0.0p377 and 2.1.1p2)
 Windows:: MRI 1.9 (Tested on 32-bit Windows XP with 1.9.2p290 and 1.9.3p194)
 
 
