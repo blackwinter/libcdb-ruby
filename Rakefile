@@ -11,7 +11,7 @@ begin
   end
 
   if dir = ENV['MINGW32']
-    cco << "--with-cflags=\"-I#{dir}/include -L#{dir}/lib\""
+    cco << %Q{--with-cflags="-I#{dir}/include -L#{dir}/lib"}
   end
 
   Hen.lay! {{
@@ -24,8 +24,7 @@ begin
       :license   => %q{AGPL-3.0},
       :homepage  => :blackwinter,
       :extension => {
-        :cross_config_options => cco,
-        :ruby_versions => RUBY_VERSION
+        :cross_config_options => cco
       },
       required_ruby_version: '>= 1.9.2'
     }
