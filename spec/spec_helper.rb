@@ -4,6 +4,8 @@ require 'libcdb'
 require 'tempfile'
 
 RSpec.configure { |config|
+  config.expect_with(:rspec) { |c| c.syntax = [:should, :expect] }
+
   config.include(Module.new {
     TEST_DATA = {}
 
