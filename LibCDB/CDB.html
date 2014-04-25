@@ -2,75 +2,72 @@
 
 <html>
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta charset="UTF-8">
 
-<title>class LibCDB::CDB - libcdb-ruby Application documentation (v0.1.0)</title>
+<title>class LibCDB::CDB - libcdb-ruby Application documentation (v0.1.1)</title>
 
-<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+<link href="../fonts.css" rel="stylesheet">
+<link href="../rdoc.css" rel="stylesheet">
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "../";
 </script>
 
-<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+<script src="../js/jquery.js"></script>
+<script src="../js/navigation.js"></script>
+<script src="../js/search_index.js"></script>
+<script src="../js/search.js"></script>
+<script src="../js/searcher.js"></script>
+<script src="../js/darkfish.js"></script>
 
 
-<body id="top" class="class">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="../index.html">Home</a>
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
     <a href="../table_of_contents.html#classes">Classes</a>
     <a href="../table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+  </div>
+</div>
 
-
-  <nav id="search-section" class="section project-section" class="initially-hidden">
+    <div id="search-section" role="search" class="project-section initially-hidden">
   <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
              title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
   </form>
+</div>
 
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
-
+  </div>
 
   
-
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>ext/libcdb/libcdb.c
-    <li>lib/libcdb.rb
-    <li>lib/libcdb/version.rb
-  </ul>
-</nav>
-
-    
-  </div>
 
   <div id="class-metadata">
     
-    <nav id="parent-class-section" class="section">
-  <h3 class="section-header">Parent</h3>
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
   
   <p class="link"><a href="../Object.html">Object</a>
   
-</nav>
+</div>
 
     
-    <!-- Extension Modules -->
-<nav id="extends-section" class="section">
-  <h3 class="section-header">Extended With Modules</h3>
+    <div id="extends-section" class="nav-section">
+  <h3>Extended With Modules</h3>
 
   <ul class="link-list">
     
@@ -79,23 +76,17 @@
   
   
   </ul>
-</nav>
+</div>
 
     <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
 
-  <ul class="link-list">
-    
-    <li ><a href="#method-c-_open_args">::_open_args</a>
-    
-    <li ><a href="#method-c-dump">::dump</a>
-    
-    <li ><a href="#method-c-foreach">::foreach</a>
+  <ul class="link-list" role="directory">
     
     <li ><a href="#method-c-new">::new</a>
     
-    <li ><a href="#method-c-open">::open</a>
+    <li ><a href="#method-i-_open_args">#_open_args</a>
     
     <li ><a href="#method-i-close">#close</a>
     
@@ -108,6 +99,12 @@
     <li ><a href="#method-i-closed_read-3F">#closed_read?</a>
     
     <li ><a href="#method-i-closed_write-3F">#closed_write?</a>
+    
+    <li ><a href="#method-i-dump">#dump</a>
+    
+    <li ><a href="#method-i-foreach">#foreach</a>
+    
+    <li ><a href="#method-i-open">#open</a>
     
     <li ><a href="#method-i-open_read">#open_read</a>
     
@@ -124,56 +121,21 @@
     <li ><a href="#method-i-writer">#writer</a>
     
   </ul>
-</nav>
-
-  </div>
-
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="../COPYING.html">COPYING</a>
-  
-    <li class="file"><a href="../ChangeLog.html">ChangeLog</a>
-  
-    <li class="file"><a href="../README.html">README</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="../LibCDB.html">LibCDB</a>
-  
-    <li><a href="../LibCDB/CDB.html">LibCDB::CDB</a>
-  
-    <li><a href="../LibCDB/CDB/Reader.html">LibCDB::CDB::Reader</a>
-  
-    <li><a href="../LibCDB/CDB/Version.html">LibCDB::CDB::Version</a>
-  
-    <li><a href="../LibCDB/CDB/Writer.html">LibCDB::CDB::Writer</a>
-  
-    <li><a href="../Object.html">Object</a>
-  
-  </ul>
-</nav>
+</div>
 
   </div>
 </nav>
 
-<div id="documentation">
-  <h1 class="class">class LibCDB::CDB</h1>
+<main role="main" aria-labelledby="class-LibCDB::CDB">
+  <h1 id="class-LibCDB::CDB" class="class">
+    class LibCDB::CDB
+  </h1>
 
-  <div id="description" class="description">
+  <section class="description">
     
 <p>See <a href="../README.html">README</a>.</p>
 
-  </div><!-- description -->
+  </section>
 
   
   
@@ -184,19 +146,20 @@
     
 
     
-    <!-- Constants -->
-    <section id="constants-list" class="section">
-      <h3 class="section-header">Constants</h3>
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
       <dl>
       
         <dt id="LIBCDB_VERSION">LIBCDB_VERSION
         
-        <dd class="description"><p>The TinyCDB library version.</p>
+        <dd><p>The TinyCDB library version.</p>
         
       
         <dt id="VERSION">VERSION
         
-        <dd class="description">
+        <dd>
         
       
       </dl>
@@ -204,9 +167,10 @@
     
 
     
-    <!-- Attributes -->
-    <section id="attribute-method-details" class="method-section section">
-      <h3 class="section-header">Attributes</h3>
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
 
       
       <div id="attribute-i-io" class="method-detail">
@@ -235,102 +199,14 @@
         </div>
       </div>
       
-    </section><!-- attribute-method-details -->
+    </section>
     
 
-    <!-- Methods -->
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
-
-    
-      <div id="method-c-dump" class="method-detail ">
-        
-        
-        <div class="method-heading">
-          <span class="method-callseq">
-            dump(path[, target[, separator]]) &rarr; target
-          </span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-        
-
-        <div class="method-description">
-          
-          <p>Opens <code>path</code> for reading and shovels each record dump into
-<code>target</code> (followed by <code>separator</code>, if present).
-Returns <code>target</code>.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="dump-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 78</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">target</span> = <span class="ruby-string">&#39;&#39;</span>, <span class="ruby-identifier">separator</span> = <span class="ruby-identifier">$\</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">$/</span>)
-  <span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">cdb</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">cdb</span>.<span class="ruby-identifier">each_dump</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dump</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">target</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">dump</span>
-      <span class="ruby-identifier">target</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">separator</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">separator</span>
-    }
-
-    <span class="ruby-identifier">target</span>
-  }
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- dump-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- dump-method -->
-
-    
-      <div id="method-c-foreach" class="method-detail ">
-        
-        
-        <div class="method-heading">
-          <span class="method-callseq">
-            foreach(path) { |key, val| ... }
-          </span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-        <div class="method-heading">
-          <span class="method-callseq">
-            foreach(path, key) { |val| ... }
-          </span>
-          
-        </div>
-        
-        
-
-        <div class="method-description">
-          
-          <p>Opens <code>path</code> for reading and iterates over each key/value pair,
-or, if <code>key</code> is given, each value for <code>key</code>.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="foreach-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 69</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">foreach</span>(<span class="ruby-identifier">path</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">key</span>)
-  <span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">cdb</span><span class="ruby-operator">|</span> <span class="ruby-identifier">cdb</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">key</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span> <span class="ruby-keyword">yield</span> <span class="ruby-identifier">val</span> } }
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- foreach-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- foreach-method -->
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
 
     
       <div id="method-c-new" class="method-detail ">
@@ -372,17 +248,355 @@ will be truncated each time it&#39;s opened for writing.</p>
     <span class="ruby-keyword">else</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;illegal access mode #{mode.inspect}&quot;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- new-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- new-method -->
+      </div>
 
     
-      <div id="method-c-open" class="method-detail ">
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-close" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            close &rarr; nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Closes both the <a href="CDB.html#method-i-reader">reader</a> and the <a
+href="CDB.html#method-i-writer">writer</a>, as well as <a
+href="CDB.html#attribute-i-io">io</a>. Doesn&#39;t raise an IOError if
+either of them is already closed.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="close-source">
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 225</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">close</span>
+  <span class="ruby-identifier">close_read</span>(<span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">close_write</span>(<span class="ruby-keyword">false</span>)
+  <span class="ruby-identifier">io</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">io</span>.<span class="ruby-identifier">closed?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-close_read" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            close_read([strict]) &rarr; nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>If <em>cdb</em> is currently opened for reading, closes the <a
+href="CDB.html#method-i-reader">reader</a> (and <a
+href="CDB.html#attribute-i-io">io</a> with it). Otherwise, if
+<code>strict</code> is true, raises an IOError.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="close_read-source">
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 197</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">close_read</span>(<span class="ruby-identifier">strict</span> = <span class="ruby-keyword">true</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">read?</span>
+    <span class="ruby-ivar">@reader</span>.<span class="ruby-identifier">close</span>
+    <span class="ruby-ivar">@reader</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">strict</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">IOError</span>, <span class="ruby-string">&#39;not opened for reading&#39;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-close_write" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            close_write([strict]) &rarr; nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>If <em>cdb</em> is currently opened for writing, closes the <a
+href="CDB.html#method-i-writer">writer</a> (and <a
+href="CDB.html#attribute-i-io">io</a> with it). Otherwise, if
+<code>strict</code> is true, raises an IOError.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="close_write-source">
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 211</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">close_write</span>(<span class="ruby-identifier">strict</span> = <span class="ruby-keyword">true</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">write?</span>
+    <span class="ruby-ivar">@writer</span>.<span class="ruby-identifier">close</span>
+    <span class="ruby-ivar">@writer</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">strict</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">IOError</span>, <span class="ruby-string">&#39;not opened for writing&#39;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-closed-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            closed? &rarr; true | false | nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Whether <em>cdb</em> is closed. See <a
+href="CDB.html#method-i-closed_read-3F">closed_read?</a> and <a
+href="CDB.html#method-i-closed_write-3F">closed_write?</a>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="closed-3F-source">
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 251</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">closed?</span>
+  <span class="ruby-identifier">read?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">closed_read?</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">write?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">closed_write?</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-closed_read-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            closed_read? &rarr; true | false | nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Whether <a href="CDB.html#method-i-reader">reader</a> is closed if
+<em>cdb</em> is currently opened for reading.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="closed_read-3F-source">
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 235</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">closed_read?</span>
+  <span class="ruby-identifier">reader</span>.<span class="ruby-identifier">closed?</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">read?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-closed_write-3F" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            closed_write? &rarr; true | false | nil
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Whether <a href="CDB.html#method-i-writer">writer</a> is closed if
+<em>cdb</em> is currently opened for writing.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="closed_write-3F-source">
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 243</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">closed_write?</span>
+  <span class="ruby-identifier">writer</span>.<span class="ruby-identifier">closed?</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">write?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-dump" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            dump(path[, target[, separator]]) &rarr; target
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Opens <code>path</code> for reading and shovels each record dump into
+<code>target</code> (followed by <code>separator</code>, if present).
+Returns <code>target</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="dump-source">
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dump</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">target</span> = <span class="ruby-string">&#39;&#39;</span>, <span class="ruby-identifier">separator</span> = <span class="ruby-identifier">$\</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">$/</span>)
+  <span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">cdb</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">cdb</span>.<span class="ruby-identifier">each_dump</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dump</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">target</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">dump</span>
+      <span class="ruby-identifier">target</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">separator</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">separator</span>
+    }
+
+    <span class="ruby-identifier">target</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-foreach" class="method-detail ">
+        
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            foreach(path) { |key, val| ... }
+          </span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+        <div class="method-heading">
+          <span class="method-callseq">
+            foreach(path, key) { |val| ... }
+          </span>
+          
+        </div>
+        
+        
+
+        <div class="method-description">
+          
+          <p>Opens <code>path</code> for reading and iterates over each key/value pair,
+or, if <code>key</code> is given, each value for <code>key</code>.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="foreach-source">
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">foreach</span>(<span class="ruby-identifier">path</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">key</span>)
+  <span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">cdb</span><span class="ruby-operator">|</span> <span class="ruby-identifier">cdb</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">key</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">val</span><span class="ruby-operator">|</span> <span class="ruby-keyword">yield</span> <span class="ruby-identifier">val</span> } }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-open" class="method-detail ">
         
         
         <div class="method-heading">
@@ -456,310 +670,14 @@ Otherwise just returns the object.</p>
     <span class="ruby-identifier">cdb</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- open-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- open-method -->
-
-    
-    </section><!-- public-class-method-details -->
-  
-     <section id="private-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Private Class Methods</h3>
-
-    
-      <div id="method-c-_open_args" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">_open_args</span><span
-            class="method-args">(path, mode)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="_open_args-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 91</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">_open_args</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">mode</span>)
-  <span class="ruby-identifier">klass</span>, <span class="ruby-identifier">args</span> = <span class="ruby-keyword">self</span>, []
-
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">mode</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;r+&#39;</span>       <span class="ruby-keyword">then</span> <span class="ruby-identifier">args</span> = [<span class="ruby-identifier">mode</span> = <span class="ruby-constant">MODE_READ</span>]
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;w+&#39;</span>       <span class="ruby-keyword">then</span> <span class="ruby-identifier">args</span> = [       <span class="ruby-constant">MODE_WRITE</span>]
-    <span class="ruby-keyword">when</span> <span class="ruby-constant">MODE_READ</span>  <span class="ruby-keyword">then</span> <span class="ruby-identifier">klass</span>        = <span class="ruby-constant">Reader</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-constant">MODE_WRITE</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">klass</span>,  <span class="ruby-identifier">mode</span> = <span class="ruby-constant">Writer</span>, <span class="ruby-string">&#39;w+&#39;</span>
-    <span class="ruby-keyword">else</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;illegal access mode #{mode.inspect}&quot;</span>
-  <span class="ruby-keyword">end</span>
-
-  [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">args</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">mode</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;b&#39;</span>))]
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- _open_args-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- _open_args-method -->
-
-    
-    </section><!-- private-class-method-details -->
-  
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
-
-    
-      <div id="method-i-close" class="method-detail ">
-        
-        
-        <div class="method-heading">
-          <span class="method-callseq">
-            close &rarr; nil
-          </span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-        
-
-        <div class="method-description">
-          
-          <p>Closes both the <a href="CDB.html#method-i-reader">reader</a> and the <a
-href="CDB.html#method-i-writer">writer</a>, as well as <a
-href="CDB.html#attribute-i-io">io</a>. Doesn&#39;t raise an IOError if
-either of them is already closed.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="close-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 225</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">close_read</span>(<span class="ruby-keyword">false</span>)
-  <span class="ruby-identifier">close_write</span>(<span class="ruby-keyword">false</span>)
-  <span class="ruby-identifier">io</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">io</span>.<span class="ruby-identifier">closed?</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- close-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- close-method -->
-
-    
-      <div id="method-i-close_read" class="method-detail ">
-        
-        
-        <div class="method-heading">
-          <span class="method-callseq">
-            close_read([strict]) &rarr; nil
-          </span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-        
-
-        <div class="method-description">
-          
-          <p>If <em>cdb</em> is currently opened for reading, closes the <a
-href="CDB.html#method-i-reader">reader</a> (and <a
-href="CDB.html#attribute-i-io">io</a> with it). Otherwise, if
-<code>strict</code> is true, raises an IOError.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="close_read-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 197</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">close_read</span>(<span class="ruby-identifier">strict</span> = <span class="ruby-keyword">true</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">read?</span>
-    <span class="ruby-ivar">@reader</span>.<span class="ruby-identifier">close</span>
-    <span class="ruby-ivar">@reader</span> = <span class="ruby-keyword">nil</span>
-  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">strict</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">IOError</span>, <span class="ruby-string">&#39;not opened for reading&#39;</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- close_read-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- close_read-method -->
-
-    
-      <div id="method-i-close_write" class="method-detail ">
-        
-        
-        <div class="method-heading">
-          <span class="method-callseq">
-            close_write([strict]) &rarr; nil
-          </span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-        
-
-        <div class="method-description">
-          
-          <p>If <em>cdb</em> is currently opened for writing, closes the <a
-href="CDB.html#method-i-writer">writer</a> (and <a
-href="CDB.html#attribute-i-io">io</a> with it). Otherwise, if
-<code>strict</code> is true, raises an IOError.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="close_write-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 211</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">close_write</span>(<span class="ruby-identifier">strict</span> = <span class="ruby-keyword">true</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">write?</span>
-    <span class="ruby-ivar">@writer</span>.<span class="ruby-identifier">close</span>
-    <span class="ruby-ivar">@writer</span> = <span class="ruby-keyword">nil</span>
-  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">strict</span>
-    <span class="ruby-identifier">raise</span> <span class="ruby-constant">IOError</span>, <span class="ruby-string">&#39;not opened for writing&#39;</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- close_write-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- close_write-method -->
-
-    
-      <div id="method-i-closed-3F" class="method-detail ">
-        
-        
-        <div class="method-heading">
-          <span class="method-callseq">
-            closed? &rarr; true | false | nil
-          </span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-        
-
-        <div class="method-description">
-          
-          <p>Whether <em>cdb</em> is closed. See <a
-href="CDB.html#method-i-closed_read-3F">closed_read?</a> and <a
-href="CDB.html#method-i-closed_write-3F">closed_write?</a>.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="closed-3F-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 251</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">closed?</span>
-  <span class="ruby-identifier">read?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">closed_read?</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">write?</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">closed_write?</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- closed-3F-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- closed-3F-method -->
-
-    
-      <div id="method-i-closed_read-3F" class="method-detail ">
-        
-        
-        <div class="method-heading">
-          <span class="method-callseq">
-            closed_read? &rarr; true | false | nil
-          </span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-        
-
-        <div class="method-description">
-          
-          <p>Whether <a href="CDB.html#method-i-reader">reader</a> is closed if
-<em>cdb</em> is currently opened for reading.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="closed_read-3F-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 235</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">closed_read?</span>
-  <span class="ruby-identifier">reader</span>.<span class="ruby-identifier">closed?</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">read?</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- closed_read-3F-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- closed_read-3F-method -->
-
-    
-      <div id="method-i-closed_write-3F" class="method-detail ">
-        
-        
-        <div class="method-heading">
-          <span class="method-callseq">
-            closed_write? &rarr; true | false | nil
-          </span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-        
-
-        <div class="method-description">
-          
-          <p>Whether <a href="CDB.html#method-i-writer">writer</a> is closed if
-<em>cdb</em> is currently opened for writing.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="closed_write-3F-source">
-            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 243</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">closed_write?</span>
-  <span class="ruby-identifier">writer</span>.<span class="ruby-identifier">closed?</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">write?</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- closed_write-3F-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- closed_write-3F-method -->
+      </div>
 
     
       <div id="method-i-open_read" class="method-detail ">
@@ -791,14 +709,14 @@ href="CDB.html#method-i-writer">writer</a> if open.</p>
   <span class="ruby-identifier">close_write</span>(<span class="ruby-keyword">false</span>)
   <span class="ruby-ivar">@reader</span> = <span class="ruby-constant">Reader</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">reopen</span>(<span class="ruby-constant">MODE_READ</span>))
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- open_read-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- open_read-method -->
+      </div>
 
     
       <div id="method-i-open_write" class="method-detail ">
@@ -831,14 +749,14 @@ href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
   <span class="ruby-identifier">close_read</span>(<span class="ruby-keyword">false</span>)
   <span class="ruby-ivar">@writer</span> = <span class="ruby-constant">Writer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">reopen</span>(<span class="ruby-constant">MODE_WRITE</span>))
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- open_write-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- open_write-method -->
+      </div>
 
     
       <div id="method-i-read-3F" class="method-detail ">
@@ -867,14 +785,14 @@ href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">read?</span>
   <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-ivar">@reader</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- read-3F-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- read-3F-method -->
+      </div>
 
     
       <div id="method-i-reader" class="method-detail ">
@@ -904,14 +822,14 @@ href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reader</span>
   <span class="ruby-ivar">@reader</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">open_read</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- reader-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- reader-method -->
+      </div>
 
     
       <div id="method-i-write-3F" class="method-detail ">
@@ -940,14 +858,14 @@ href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">write?</span>
   <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-ivar">@writer</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- write-3F-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- write-3F-method -->
+      </div>
 
     
       <div id="method-i-writer" class="method-detail ">
@@ -977,20 +895,65 @@ href="CDB.html#attribute-i-io">io</a> will be truncated.</p>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">writer</span>
   <span class="ruby-ivar">@writer</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">open_write</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- writer-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- writer-method -->
+      </div>
 
     
-    </section><!-- public-instance-method-details -->
+    </section>
   
-     <section id="private-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Private Instance Methods</h3>
+     <section id="private-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Private Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-_open_args" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">_open_args</span><span
+            class="method-args">(path, mode)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="_open_args-source">
+            <pre><span class="ruby-comment"># File lib/libcdb.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">_open_args</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">mode</span>)
+  <span class="ruby-identifier">klass</span>, <span class="ruby-identifier">args</span> = <span class="ruby-keyword">self</span>, []
+
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">mode</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;r+&#39;</span>       <span class="ruby-keyword">then</span> <span class="ruby-identifier">args</span> = [<span class="ruby-identifier">mode</span> = <span class="ruby-constant">MODE_READ</span>]
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;w+&#39;</span>       <span class="ruby-keyword">then</span> <span class="ruby-identifier">args</span> = [       <span class="ruby-constant">MODE_WRITE</span>]
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">MODE_READ</span>  <span class="ruby-keyword">then</span> <span class="ruby-identifier">klass</span>        = <span class="ruby-constant">Reader</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">MODE_WRITE</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">klass</span>,  <span class="ruby-identifier">mode</span> = <span class="ruby-constant">Writer</span>, <span class="ruby-string">&#39;w+&#39;</span>
+    <span class="ruby-keyword">else</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;illegal access mode #{mode.inspect}&quot;</span>
+  <span class="ruby-keyword">end</span>
+
+  [<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">args</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">mode</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;b&#39;</span>))]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
 
     
       <div id="method-i-reopen" class="method-detail ">
@@ -1025,26 +988,25 @@ returns it.</p>
 
   <span class="ruby-identifier">io</span>.<span class="ruby-identifier">reopen</span>(<span class="ruby-identifier">io</span>.<span class="ruby-identifier">path</span>, <span class="ruby-identifier">new_mode</span> <span class="ruby-operator">+</span> <span class="ruby-string">&#39;b&#39;</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- reopen-source -->
+          </div>
           
         </div>
 
         
 
         
-      </div><!-- reopen-method -->
+      </div>
 
     
-    </section><!-- private-instance-method-details -->
+    </section>
   
-  </section><!-- 5Buntitled-5D -->
+  </section>
+</main>
 
-</div><!-- documentation -->
 
-
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
