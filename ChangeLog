@@ -2,7 +2,12 @@
 
 = Revision history for libcdb-ruby
 
-== 0.1.0 [unreleased]
+== 0.1.1 [2014-04-25]
+
+* <b>Dropped support for Ruby 1.9.2.</b>
+* Housekeeping.
+
+== 0.1.0 [2013-08-03]
 
 * Removed usage of +RARRAY_PTR+ (cf. Ruby bug
   {#8399}[https://bugs.ruby-lang.org/issues/8399]).
