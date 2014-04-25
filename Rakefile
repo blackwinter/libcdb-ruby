@@ -15,18 +15,17 @@ begin
   end
 
   Hen.lay! {{
-    :gem => {
-      :name      => %q{libcdb-ruby},
-      :version   => LibCDB::CDB::VERSION,
-      :summary   => %q{Ruby bindings for CDB Constant Databases.},
-      :author    => %q{Jens Wille},
-      :email     => %q{jens.wille@gmail.com},
-      :license   => %q{AGPL-3.0},
-      :homepage  => :blackwinter,
-      :extension => {
-        :cross_config_options => cco
-      },
-      required_ruby_version: '>= 1.9.2'
+    gem: {
+      name:      %q{libcdb-ruby},
+      version:   LibCDB::CDB::VERSION,
+      summary:   %q{Ruby bindings for CDB Constant Databases.},
+      author:    %q{Jens Wille},
+      email:     %q{jens.wille@gmail.com},
+      license:   %q{AGPL-3.0},
+      homepage:  :blackwinter,
+      extension: { cross_config_options: cco },
+
+      required_ruby_version: '>= 1.9.3'
     }
   }}
 rescue LoadError => err

@@ -2,16 +2,8 @@
 #define RUBY_LIBCDB_H
 
 #include <ruby.h>
-#if HAVE_RUBY_IO_H
 #include <ruby/io.h>
-#else
-#include <rubyio.h>
-#endif
-#if HAVE_RUBY_ST_H
 #include <ruby/st.h>
-#else
-#include <st.h>
-#endif
 #include <cdb.h>
 #include <sys/types.h>
 #include <sys/stat.h>

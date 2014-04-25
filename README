@@ -62,7 +62,6 @@ creating and reading {constant databases}[http://cr.yp.to/cdb.html].
 
 == PREREQUISITES
 
-<b></b>
 * Ruby 1.9+ (see {below}[rdoc-label:label-SUPPORTED+PLATFORMS] for details)
 * TinyCDB[http://www.corpit.ru/mjt/tinycdb.html] headers (not needed when
   installing the fat binary gem on Windows)
@@ -74,10 +73,9 @@ creating and reading {constant databases}[http://cr.yp.to/cdb.html].
 
 == SUPPORTED PLATFORMS
 
-<b></b>
-Linux::   MRI 1.9, 2.0 & 2.1 (Tested on 64-bit Ubuntu GNU/Linux with 1.9.2p323,
-          1.9.3p488, 2.0.0p377 and 2.1.1p2)
-Windows:: MRI 1.9 (Tested on 32-bit Windows XP with 1.9.2p290 and 1.9.3p194)
+Linux::   MRI 1.9.3, 2.0 & 2.1 (Tested on 64-bit Ubuntu GNU/Linux
+          with 1.9.3p488, 2.0.0p377 and 2.1.2p77)
+Windows:: MRI 1.9.3 (Tested on 32-bit Windows XP with 1.9.3p194)
 
 
 == LINKS
@@ -109,7 +107,7 @@ team for making extension building such a breeze :)
 Copyright (C) 2012 University of Cologne,
 Albertus-Magnus-Platz, 50923 Cologne, Germany
 
-Copyright (C) 2013 Jens Wille
+Copyright (C) 2013-2014 Jens Wille
 
 libcdb-ruby is free software: you can redistribute it and/or modify it
 under the terms of the GNU Affero General Public License as published by

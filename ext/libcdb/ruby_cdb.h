@@ -1,12 +1,6 @@
 #ifndef RUBY_CDB_H
 #define RUBY_CDB_H
 
-#ifdef HAVE_RUBY_IO_H
-#define RCDB_GET_FD(fptr) (fptr)->fd
-#else
-#define RCDB_GET_FD(fptr) fileno((fptr)->f)
-#endif
-
 #define RCDB_GET_STRUCT(what, _struct, obj, ptr) \
   if (RTEST(rcdb_##what##er_closed_p(obj))) {\
     rb_raise(rb_eIOError, "closed stream");\
@@ -40,7 +34,7 @@ rcdb_##what##er_alloc(VALUE klass) {\
 \
   RCDB_##WHAT##ER_GET(self, ptr);\
 \
-  if (cdb_##init(ptr, RCDB_GET_FD(fptr)) == -1) {\
+  if (cdb_##init(ptr, fptr->fd) == -1) {\
     rb_sys_fail(0);\
   }
 
