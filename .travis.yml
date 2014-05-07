@@ -20,7 +20,7 @@ script:
   rake spec
 
 install:
-  gem install --development libcdb-ruby
+  gem install --prerelease --development libcdb-ruby
 
 before_install:
   - sudo apt-get update -qq
