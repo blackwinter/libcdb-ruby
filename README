@@ -82,7 +82,7 @@ Windows:: MRI 1.9.3 (Tested on 32-bit Windows XP with 1.9.3p194)
 
 CDB::           http://cr.yp.to/cdb.html
 TinyCDB::       http://www.corpit.ru/mjt/tinycdb.html
-Documentation:: https://blackwinter.github.io/libcdb-ruby/
+Documentation:: https://blackwinter.github.com/libcdb-ruby
 Source code::   https://github.com/blackwinter/libcdb-ruby
 RubyGem::       https://rubygems.org/gems/libcdb-ruby
 Travis CI::     https://travis-ci.org/blackwinter/libcdb-ruby
