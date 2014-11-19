@@ -1,4 +1,4 @@
-require File.expand_path(%q{../lib/libcdb/version}, __FILE__)
+require_relative 'lib/libcdb/version'
 
 begin
   require 'hen'
