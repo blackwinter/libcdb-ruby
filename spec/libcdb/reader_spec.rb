@@ -191,6 +191,22 @@ describe LibCDB::CDB::Reader do
       @db.to_a.should == a
     end
 
+    it "should yield keys" do
+      @db.each_key { |k| break k }.should == 'k1'
+    end
+
+    it "should return an enumerator for #each_key without block" do
+      @db.each_key.should be_a(Enumerator)
+    end
+
+    it "should yield values" do
+      @db.each_value { |v| break v }.should == 'v1.1'
+    end
+
+    it "should return an enumerator for #each_value without block" do
+      @db.each_value.should be_a(Enumerator)
+    end
+
   end
 
 end

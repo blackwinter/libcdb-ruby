@@ -144,7 +144,7 @@ rcdb_reader_each(int argc, VALUE *argv, VALUE self) {
   unsigned cdbp;
   VALUE key;
 
-  RCDB_RETURN_ENUMERATOR(self, argc, argv, 1);
+  RCDB_RETURN_ENUMERATOR(1);
   RCDB_READER_GET(self, cdb);
 
   if (rb_scan_args(argc, argv, "01", &key) == 1 && !NIL_P(key)) {
@@ -184,7 +184,7 @@ static VALUE
 rcdb_reader_each_dump(int argc, VALUE *argv, VALUE self) {
   VALUE key;
 
-  RCDB_RETURN_ENUMERATOR(self, argc, argv, 1);
+  RCDB_RETURN_ENUMERATOR(1);
 
   if (rb_scan_args(argc, argv, "01", &key) == 1 && !NIL_P(key)) {
     RCDB_READER_ITERATE0(each, yield_dump2, rb_ary_new3(1, key))
@@ -210,6 +210,7 @@ rcdb_reader_each_key(VALUE self) {
   unsigned cdbp;
   VALUE key, hash = rb_hash_new();
 
+  RCDB_RETURN_ENUMERATOR_NONE;
   RCDB_READER_GET(self, cdb);
   cdb_seqinit(&cdbp, cdb);
 
@@ -236,6 +237,7 @@ rcdb_reader_each_value(VALUE self) {
   struct cdb *cdb = NULL;
   unsigned cdbp;
 
+  RCDB_RETURN_ENUMERATOR_NONE;
   RCDB_READER_GET(self, cdb);
   cdb_seqinit(&cdbp, cdb);
 

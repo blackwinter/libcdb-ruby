@@ -38,16 +38,22 @@ rcdb_##what##er_alloc(VALUE klass) {\
     rb_sys_fail(0);\
   }
 
-#define RCDB_RAISE_ARGS(min, max) \
+#define RCDB_RAISE_ARGS0(min, max, argc) \
   rb_raise(rb_eArgError,\
     "wrong number of arguments (%d for " #min "-" #max ")", argc);
 
-#define RCDB_RETURN_ENUMERATOR(self, argc, argv, max) \
+#define RCDB_RAISE_ARGS(min, max) RCDB_RAISE_ARGS0(min, max, argc)
+
+#define RCDB_RETURN_ENUMERATOR0(argc, argv, max) \
   if (argc > max) {\
-    RCDB_RAISE_ARGS(0, max)\
+    RCDB_RAISE_ARGS0(0, max, argc)\
   }\
 \
   RETURN_ENUMERATOR(self, argc, argv)
+
+#define RCDB_RETURN_ENUMERATOR(max) RCDB_RETURN_ENUMERATOR0(argc, argv, max)
+
+#define RCDB_RETURN_ENUMERATOR_NONE RCDB_RETURN_ENUMERATOR0(0, NULL, 0)
 
 #define RCDB_DEFINE_INSPECT(what) \
 static VALUE \
