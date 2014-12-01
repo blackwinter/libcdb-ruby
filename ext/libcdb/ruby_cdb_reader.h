@@ -41,6 +41,9 @@ rcdb_reader_read_##what(struct cdb *cdb) {\
   return ret;\
 }
 
+#define RCDB_READER_STRING_LEN(str) \
+  rb_funcall(LONG2NUM(RSTRING_LEN(str)), rb_intern("to_s"), 0)
+
 extern VALUE cCDBReader;
 void rcdb_init_reader(void);
 

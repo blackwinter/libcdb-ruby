@@ -102,9 +102,9 @@ rcdb_reader_dump_pair(VALUE key, VALUE val) {
   VALUE str = rb_str_new2("");
 
   rb_str_cat2(str, "+");
-  rb_str_append(str, rb_fix2str(LONG2NUM(RSTRING_LEN(key)), 10));
+  rb_str_append(str, RCDB_READER_STRING_LEN(key));
   rb_str_cat2(str, ",");
-  rb_str_append(str, rb_fix2str(LONG2NUM(RSTRING_LEN(val)), 10));
+  rb_str_append(str, RCDB_READER_STRING_LEN(val));
   rb_str_cat2(str, ":");
   rb_str_append(str, key);
   rb_str_cat2(str, "->");
