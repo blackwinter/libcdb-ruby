@@ -1,5 +1,7 @@
 describe LibCDB::CDB::Reader do
 
+  rbx = lambda { |msg| "Rubinius: #{msg}" if RUBY_ENGINE == 'rbx' }
+
   before :all do
     @temp = tempfile
 
@@ -51,7 +53,7 @@ describe LibCDB::CDB::Reader do
       @db.should be_empty
     end
 
-    it "should know its size" do
+    it "should know its size", skip: rbx['invalid handle usage detected'] do
       @db.size.should == 0
     end
 
@@ -107,7 +109,7 @@ describe LibCDB::CDB::Reader do
       @db.should_not be_empty
     end
 
-    it "should know its size" do
+    it "should know its size", skip: rbx['invalid handle usage detected'] do
       @db.size.should == TEST_DATA.size
     end
 
@@ -123,7 +125,7 @@ describe LibCDB::CDB::Reader do
       @db.values.should == TEST_DATA.map { |_, v| v }.flatten
     end
 
-    it "should know if it has a key" do
+    it "should know if it has a key", skip: rbx['key not found'] do
       @db.should have_key('k3')
     end
 
@@ -131,7 +133,7 @@ describe LibCDB::CDB::Reader do
       @db.should_not have_key('none')
     end
 
-    it "should know if it has a value" do
+    it "should know if it has a value", skip: rbx['value not found'] do
       @db.should have_value('v3.2')
     end
 
@@ -165,7 +167,7 @@ describe LibCDB::CDB::Reader do
       @db.fetch_last('k10').should == 'v10.10'
     end
 
-    it "should find the key for a value" do
+    it "should find the key for a value", skip: rbx['the VM is exiting improperly'] do
       @db.key('v3.2').should == 'k3'
     end
 
@@ -173,7 +175,13 @@ describe LibCDB::CDB::Reader do
       @db.key('none').should be_nil
     end
 
-    it "should dump records for key" do
+    it "should dump the database", skip: rbx['no block given'] do
+      d = @db.dump
+      d.should be_a(String)
+      d.length.should == 1050408
+    end
+
+    it "should dump records for key", skip: rbx['no block given'] do
       d = []
       @db.each_dump('k3') { |e| d << e }
       d.should == %w[+2,4:k3->v3.1 +2,4:k3->v3.2 +2,4:k3->v3.3]
