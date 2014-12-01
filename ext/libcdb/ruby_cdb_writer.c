@@ -132,8 +132,7 @@ rcdb_writer_put(int argc, VALUE *argv, VALUE self, enum cdb_put_mode mode) {
 
           break;
         case T_HASH:
-          val = rb_ary_new();
-          st_foreach(RHASH_TBL(arg), rcdb_writer_push_pair, val);
+          rb_hash_foreach(arg, rcdb_writer_push_pair, val = rb_ary_new());
 
           for (i = 0; i < RARRAY_LEN(val); i++) {
             tmp = rb_ary_entry(val, i);

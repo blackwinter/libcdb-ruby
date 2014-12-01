@@ -40,22 +40,20 @@ rcdb_reader_iter_push(VALUE val, VALUE ary) {
 /* Helper method */
 static VALUE
 rcdb_reader_iter_aset(VALUE pair, VALUE hash) {
-  VALUE key = rb_ary_entry(pair, 0), val = rb_ary_entry(pair, 1), old;
+  VALUE key = rb_ary_entry(pair, 0);
+  VALUE val = rb_ary_entry(pair, 1);
+  VALUE old = rb_hash_aref(hash, key);
 
-  if (!st_lookup(RHASH_TBL(hash), key, 0)) {
-    rb_hash_aset(hash, key, val);
-  }
-  else {
-    old = rb_hash_aref(hash, key);
-
-    switch (TYPE(old)) {
-      case T_ARRAY:
-        rb_ary_push(old, val);
-        break;
-      default:
-        rb_hash_aset(hash, key, rb_ary_new3(2, old, val));
-        break;
-    }
+  switch (TYPE(old)) {
+    case T_NIL:
+      rb_hash_aset(hash, key, val);
+      break;
+    case T_ARRAY:
+      rb_ary_push(old, val);
+      break;
+    default:
+      rb_hash_aset(hash, key, rb_ary_new3(2, old, val));
+      break;
   }
 
   return Qnil;
@@ -215,7 +213,7 @@ rcdb_reader_each_key(VALUE self) {
   cdb_seqinit(&cdbp, cdb);
 
   while (cdb_seqnext(&cdbp, cdb) > 0) {
-    if (!st_lookup(RHASH_TBL(hash), key = rcdb_reader_read_key(cdb), 0)) {
+    if (NIL_P(rb_hash_lookup(hash, key = rcdb_reader_read_key(cdb)))) {
       rb_hash_aset(hash, key, Qtrue);
       rb_yield(key);
     }
