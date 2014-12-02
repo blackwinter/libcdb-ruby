@@ -19,5 +19,14 @@ RSpec.configure { |config|
     def tempfile
       Tempfile.open("libcdb_spec_#{object_id}_temp")
     end
+
+    def data(file)
+      File.join(File.dirname(__FILE__), 'data', file)
+    end
+
+    def reader(cdb = :test)
+      cdb = "#{cdb}.cdb" if cdb.is_a?(Symbol)
+      LibCDB::CDB::Reader.new(File.open(data(cdb)))
+    end
   })
 }
