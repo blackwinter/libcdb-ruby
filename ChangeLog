@@ -6,6 +6,8 @@
 
 * Added LibCDB::CDB.load and LibCDB::CDB.load_file to create a database from a
   dump.
+* Added LibCDB::CDB.stats and LibCDB::CDB.print_stats to collect stats from a
+  database.
 * Fixed that LibCDB::CDB::Reader#each_key and LibCDB::CDB::Reader#each_value
   would not return an enumerator when no block was given.
 

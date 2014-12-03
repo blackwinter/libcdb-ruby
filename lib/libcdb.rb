@@ -142,6 +142,60 @@ module LibCDB
         File.open(file, 'rb') { |f| self.load(path, f) }
       end
 
+      # call-seq:
+      #   CDB.stats(path) -> aHash
+      #
+      # Returns a hash with the stats on +path+.
+      def stats(path)
+        {}.tap { |stats| open(path) { |cdb|
+          stats[:records] = cnt = cdb.total
+
+          stats[:keys]   = khash = { min: Float::INFINITY, avg: 0, max: 0 }
+          stats[:values] = vhash = khash.dup
+
+          stats[:hash] = Hash.new(0).update(distances: Hash.new([0, 0]))
+
+          khash[:min] = vhash[:min] = 0 and break if cnt.zero?
+
+          ktot, vtot, update = 0, 0, lambda { |h, s| s.bytesize.tap { |l|
+            h[:min] = l if l < h[:min]
+            h[:max] = l if l > h[:max]
+          } }
+
+          cdb.each_key   { |k| ktot += update[khash, k] }
+          cdb.each_value { |v| vtot += update[vhash, v] }
+
+          khash[:avg] = (ktot + cnt / 2) / cnt
+          vhash[:avg] = (vtot + cnt / 2) / cnt
+
+          # TODO: hash table stats
+        } }
+      end
+
+      # call-seq:
+      #   CDB.print_stats(path) -> aHash
+      #
+      # Prints the #stats on +path+.
+      def print_stats(path)
+        stats(path).tap { |s|
+          r, k, v, h = s.values_at(:records, :keys, :values, :hash)
+
+          v1, v2 = [:min, :avg, :max], [:tables, :entries, :collisions]
+
+          puts 'number of records: %d'                    % r
+          puts 'key min/avg/max length: %d/%d/%d'         % k.values_at(*v1)
+          puts 'val min/avg/max length: %d/%d/%d'         % v.values_at(*v1)
+          next # TODO: hash table stats
+          puts 'hash tables/entries/collisions: %d/%d/%d' % h.values_at(*v2)
+          puts 'hash table min/avg/max length: %d/%d/%d'  % h.values_at(*v1)
+          puts 'hash table distances:'
+
+          d = h[:distances]
+          0.upto(9) { |i| puts ' d%d: %6d %2d%%' % [i, *d[i]] }
+          puts ' >9: %6d %2d%%' % d[-1]
+        }
+      end
+
       private
 
       def _open_args(path, mode)
