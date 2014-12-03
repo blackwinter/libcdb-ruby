@@ -86,6 +86,62 @@ module LibCDB
         }
       end
 
+      # call-seq:
+      #   CDB.load(path, dump) -> aCDB
+      #
+      # Opens +path+ for writing and loads +dump+ into the database. +dump+
+      # may be a string or an IO object. Returns the (unclosed) CDB object.
+      def load(path, dump)
+        require 'strscan'
+
+        s, n, e = nil, 0, lambda { |m| s.eos? ?
+          raise("Unexpected end of input (#{m} at #{n}).") :
+          raise("#{m} at #{n}:#{s.pos}: #{s.peek(16).inspect}") }
+
+        cdb = open(path, 'w+')
+
+        dump.each_line { |line|
+          n += 1
+
+          s = StringScanner.new(line)
+
+          e['Record identifier expected'] unless s.scan(/\+/)
+
+          e['Key length expected'] unless s.scan(/\d+/)
+          klen = s.matched.to_i
+
+          e['Length separator expected'] unless s.scan(/,/)
+
+          e['Value length expected'] unless s.scan(/\d+/)
+          vlen = s.matched.to_i
+
+          e['Key separator expected'] unless s.scan(/:/)
+
+          key = ''
+          klen.times { key << s.get_byte }
+
+          e['Value separator expected'] unless s.scan(/->/)
+
+          value = ''
+          vlen.times { value << s.get_byte }
+
+          e['Record terminator expected'] unless s.scan(/\n/)
+          e['Unexpected data'] unless s.eos?
+
+          cdb.store(key, value)
+        }
+
+        cdb
+      end
+
+      # call-seq:
+      #   CDB.load_file(path, file) -> aCDB
+      #
+      # Loads the dump at +file+ into the database at +path+ (see #load).
+      def load_file(path, file)
+        File.open(file, 'rb') { |f| self.load(path, f) }
+      end
+
       private
 
       def _open_args(path, mode)

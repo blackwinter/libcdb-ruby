@@ -2,6 +2,13 @@
 
 = Revision history for libcdb-ruby
 
+== 0.2.0 [unreleased]
+
+* Added LibCDB::CDB.load and LibCDB::CDB.load_file to create a database from a
+  dump.
+* Fixed that LibCDB::CDB::Reader#each_key and LibCDB::CDB::Reader#each_value
+  would not return an enumerator when no block was given.
+
 == 0.1.1 [2014-04-25]
 
 * <b>Dropped support for Ruby 1.9.2.</b>
