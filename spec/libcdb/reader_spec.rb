@@ -2,8 +2,6 @@
 
 describe LibCDB::CDB::Reader do
 
-  rbx = lambda { |msg| "Rubinius: #{msg}" if RUBY_ENGINE == 'rbx' }
-
   describe '#initialize' do
 
     it 'should not accept integers' do
@@ -38,7 +36,7 @@ describe LibCDB::CDB::Reader do
       @db.should be_empty
     end
 
-    it 'should know its size', skip: rbx['invalid handle usage detected'] do
+    it 'should know its size' do
       @db.size.should == 0
     end
 
@@ -86,7 +84,7 @@ describe LibCDB::CDB::Reader do
       @db.should_not be_empty
     end
 
-    it 'should know its size', skip: rbx['invalid handle usage detected'] do
+    it 'should know its size' do
       @db.size.should == TEST_DATA.size
     end
 
@@ -102,11 +100,11 @@ describe LibCDB::CDB::Reader do
       @db.values.should == TEST_DATA.map { |_, v| v }.flatten
     end
 
-    it 'should know if it has a key', skip: rbx['key not found'] do
+    it 'should know if it has a key' do
       @db.should have_key('k3')
     end
 
-    it 'should know if it has a wide-char key', skip: rbx['key not found'] do
+    it 'should know if it has a wide-char key' do
       @db.should have_key('€ürö')
     end
 
@@ -114,11 +112,11 @@ describe LibCDB::CDB::Reader do
       @db.should_not have_key('none')
     end
 
-    it 'should know if it has a value', skip: rbx['value not found'] do
+    it 'should know if it has a value' do
       @db.should have_value('v3.2')
     end
 
-    it 'should know if it has a wide-char value', skip: rbx['value not found'] do
+    it 'should know if it has a wide-char value' do
       @db.should have_value('½a×¾b')
     end
 
@@ -156,11 +154,11 @@ describe LibCDB::CDB::Reader do
       @db.fetch_last('k10').should == 'v10.10'
     end
 
-    it 'should find the key for a value', skip: rbx['the VM is exiting improperly'] do
+    it 'should find the key for a value' do
       @db.key('v3.2').should == 'k3'
     end
 
-    it 'should find the key for a wide-char value', skip: rbx['the VM is exiting improperly'] do
+    it 'should find the key for a wide-char value' do
       @db.key('½a×¾b').should == '€ürö'
     end
 
@@ -168,17 +166,17 @@ describe LibCDB::CDB::Reader do
       @db.key('none').should be_nil
     end
 
-    it 'should dump itself', skip: rbx['no block given'] do
+    it 'should dump itself' do
       @db.dump.should == File.read(data('test.dump'))
     end
 
-    it 'should dump records for key', skip: rbx['no block given'] do
+    it 'should dump records for key' do
       d = []
       @db.each_dump('k3') { |e| d << e }
       d.should == %w[+2,4:k3->v3.1 +2,4:k3->v3.2 +2,4:k3->v3.3]
     end
 
-    it 'should dump records for wide-char key', skip: rbx['no block given'] do
+    it 'should dump records for wide-char key' do
       d = []
       @db.each_dump('€ürö') { |e| d << e }
       d.should == %w[+8,8:€ürö->½a×¾b]
@@ -228,7 +226,7 @@ describe LibCDB::CDB::Reader do
 
   end
 
-  describe '#load_file', skip_rbx: rbx['a fatal error has occurred'] do
+  describe '#load_file' do
 
     before :all do
       @temp = tempfile
