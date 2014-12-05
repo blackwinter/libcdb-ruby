@@ -60,6 +60,8 @@ static void
 rcdb_writer_put_value(struct cdb_make *cdbm, VALUE key, VALUE val, enum cdb_put_mode mode) {
   long i;
 
+  StringValue(key);
+
   switch (TYPE(val)) {
     case T_ARRAY:
       switch (mode) {
