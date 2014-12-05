@@ -2,7 +2,7 @@
 
 == VERSION
 
-This documentation refers to libcdb-ruby version 0.1.1
+This documentation refers to libcdb-ruby version 0.2.0
 
 
 == DESCRIPTION
@@ -74,7 +74,7 @@ creating and reading {constant databases}[http://cr.yp.to/cdb.html].
 == SUPPORTED PLATFORMS
 
 Linux::   MRI 1.9.3, 2.0 & 2.1 (Tested on 64-bit Ubuntu GNU/Linux
-          with 1.9.3p488, 2.0.0p377 and 2.1.2p77)
+          with 1.9.3p550, 2.0.0p594 and 2.1.5p273)
 Windows:: MRI 1.9.3 (Tested on 32-bit Windows XP with 1.9.3p194)
 
 
