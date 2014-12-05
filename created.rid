@@ -1,12 +1,12 @@
-Fri, 25 Apr 2014 14:57:02 +0200
-README	Fri, 25 Apr 2014 12:48:24 +0200
+Fri, 05 Dec 2014 15:09:40 +0100
+README	Fri, 05 Dec 2014 15:08:07 +0100
 COPYING	Tue, 09 Apr 2013 11:30:12 +0200
-ChangeLog	Fri, 25 Apr 2014 12:48:16 +0200
+ChangeLog	Fri, 05 Dec 2014 15:06:11 +0100
 lib/cdb.rb	Tue, 09 Apr 2013 11:30:12 +0200
-lib/libcdb.rb	Tue, 11 Jun 2013 13:12:21 +0200
+lib/libcdb.rb	Fri, 05 Dec 2014 13:27:43 +0100
 lib/libcdb-ruby.rb	Tue, 09 Apr 2013 11:30:12 +0200
 ext/libcdb/libcdb.c	Tue, 09 Apr 2013 11:30:12 +0200
 ext/libcdb/ruby_cdb.c	Tue, 09 Apr 2013 11:30:12 +0200
-lib/libcdb/version.rb	Fri, 25 Apr 2014 12:48:33 +0200
-ext/libcdb/ruby_cdb_reader.c	Tue, 17 Sep 2013 11:19:17 +0200
-ext/libcdb/ruby_cdb_writer.c	Tue, 17 Sep 2013 11:19:17 +0200
+lib/libcdb/version.rb	Fri, 05 Dec 2014 15:05:59 +0100
+ext/libcdb/ruby_cdb_reader.c	Fri, 05 Dec 2014 14:24:32 +0100
+ext/libcdb/ruby_cdb_writer.c	Fri, 05 Dec 2014 13:02:10 +0100

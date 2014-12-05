@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>ChangeLog - libcdb-ruby Application documentation (v0.1.1)</title>
+<title>ChangeLog - libcdb-ruby Application documentation (v0.2.0)</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -59,12 +59,13 @@
 
   <ul class="link-list" role="directory">
     <li><a href="#label-Revision+history+for+libcdb-ruby">Revision history for libcdb-ruby</a>
-    <li><a href="#label-0.1.1+%5B2014-04-25%5D">0.1.1 [2014-04-25]</a>
-    <li><a href="#label-0.1.0+%5B2013-08-03%5D">0.1.0 [2013-08-03]</a>
-    <li><a href="#label-0.0.4+%5B2012-08-09%5D">0.0.4 [2012-08-09]</a>
-    <li><a href="#label-0.0.3+%5B2012-04-02%5D">0.0.3 [2012-04-02]</a>
-    <li><a href="#label-0.0.2+%5B2012-01-20%5D">0.0.2 [2012-01-20]</a>
-    <li><a href="#label-0.0.1+%5B2012-01-12%5D">0.0.1 [2012-01-12]</a>
+    <li><a href="#label-0.2.0+-5B2014-12-05-5D">0.2.0 [2014-12-05]</a>
+    <li><a href="#label-0.1.1+-5B2014-04-25-5D">0.1.1 [2014-04-25]</a>
+    <li><a href="#label-0.1.0+-5B2013-08-03-5D">0.1.0 [2013-08-03]</a>
+    <li><a href="#label-0.0.4+-5B2012-08-09-5D">0.0.4 [2012-08-09]</a>
+    <li><a href="#label-0.0.3+-5B2012-04-02-5D">0.0.3 [2012-04-02]</a>
+    <li><a href="#label-0.0.2+-5B2012-01-20-5D">0.0.2 [2012-01-20]</a>
+    <li><a href="#label-0.0.1+-5B2012-01-12-5D">0.0.1 [2012-01-12]</a>
   </ul>
 </div>
 
@@ -91,14 +92,34 @@
 
 <h1 id="label-Revision+history+for+libcdb-ruby">Revision history for libcdb-ruby<span><a href="#label-Revision+history+for+libcdb-ruby">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
 
-<h2 id="label-0.1.1+%5B2014-04-25%5D">0.1.1 [2014-04-25]<span><a href="#label-0.1.1+%5B2014-04-25%5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2 id="label-0.2.0+-5B2014-12-05-5D">0.2.0 [2014-12-05]<span><a href="#label-0.2.0+-5B2014-12-05-5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<ul><li>
+<p>Added encoding support to <a
+href="LibCDB/CDB/Reader.html">LibCDB::CDB::Reader</a>.</p>
+</li><li>
+<p>Added <a href="LibCDB/CDB.html#method-i-load">LibCDB::CDB#load</a> and <a
+href="LibCDB/CDB.html#method-i-load_file">LibCDB::CDB#load_file</a> to
+create a database from a    dump.</p>
+</li><li>
+<p>Added <a href="LibCDB/CDB.html#method-i-stats">LibCDB::CDB#stats</a> and <a
+href="LibCDB/CDB.html#method-i-print_stats">LibCDB::CDB#print_stats</a> to
+collect stats from a    database.</p>
+</li><li>
+<p>Fixed that <a
+href="LibCDB/CDB/Reader.html#method-i-each_key">LibCDB::CDB::Reader#each_key</a>
+and <a
+href="LibCDB/CDB/Reader.html#method-i-each_value">LibCDB::CDB::Reader#each_value</a>
+would not return an enumerator when no block was given.</p>
+</li></ul>
+
+<h2 id="label-0.1.1+-5B2014-04-25-5D">0.1.1 [2014-04-25]<span><a href="#label-0.1.1+-5B2014-04-25-5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <ul><li>
 <p><strong>Dropped support for Ruby 1.9.2.</strong></p>
 </li><li>
 <p>Housekeeping.</p>
 </li></ul>
 
-<h2 id="label-0.1.0+%5B2013-08-03%5D">0.1.0 [2013-08-03]<span><a href="#label-0.1.0+%5B2013-08-03%5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2 id="label-0.1.0+-5B2013-08-03-5D">0.1.0 [2013-08-03]<span><a href="#label-0.1.0+-5B2013-08-03-5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <ul><li>
 <p>Removed usage of <code>RARRAY_PTR</code> (cf. Ruby bug    <a
 href="https://bugs.ruby-lang.org/issues/8399">#8399</a>).</p>
@@ -110,21 +131,21 @@ href="https://bugs.ruby-lang.org/issues/8399">#8399</a>).</p>
 <p>Housekeeping.</p>
 </li></ul>
 
-<h2 id="label-0.0.4+%5B2012-08-09%5D">0.0.4 [2012-08-09]<span><a href="#label-0.0.4+%5B2012-08-09%5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2 id="label-0.0.4+-5B2012-08-09-5D">0.0.4 [2012-08-09]<span><a href="#label-0.0.4+-5B2012-08-09-5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <ul><li>
 <p>Fixed writing with Ruby 1.9.3 on Windows.</p>
 </li><li>
 <p>Fixed leaking CDB pointer when closing reader.</p>
 </li></ul>
 
-<h2 id="label-0.0.3+%5B2012-04-02%5D">0.0.3 [2012-04-02]<span><a href="#label-0.0.3+%5B2012-04-02%5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2 id="label-0.0.3+-5B2012-04-02-5D">0.0.3 [2012-04-02]<span><a href="#label-0.0.3+-5B2012-04-02-5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <ul><li>
 <p>Fixed linking error on Mac OS X. (Issue #1 reported by minaguib)</p>
 </li><li>
 <p>Some internal refactoring.</p>
 </li></ul>
 
-<h2 id="label-0.0.2+%5B2012-01-20%5D">0.0.2 [2012-01-20]<span><a href="#label-0.0.2+%5B2012-01-20%5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2 id="label-0.0.2+-5B2012-01-20-5D">0.0.2 [2012-01-20]<span><a href="#label-0.0.2+-5B2012-01-20-5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <ul><li>
 <p>Refactored C code to DRY.</p>
 </li><li>
@@ -135,7 +156,7 @@ href="https://bugs.ruby-lang.org/issues/8399">#8399</a>).</p>
 <p>A little housekeeping.</p>
 </li></ul>
 
-<h2 id="label-0.0.1+%5B2012-01-12%5D">0.0.1 [2012-01-12]<span><a href="#label-0.0.1+%5B2012-01-12%5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2 id="label-0.0.1+-5B2012-01-12-5D">0.0.1 [2012-01-12]<span><a href="#label-0.0.1+-5B2012-01-12-5D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
 <ul><li>
 <p>Birthday :-)</p>
 </li></ul>
@@ -145,7 +166,7 @@ href="https://bugs.ruby-lang.org/issues/8399">#8399</a>).</p>
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 

@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Table of Contents - libcdb-ruby Application documentation (v0.1.1)</title>
+<title>Table of Contents - libcdb-ruby Application documentation (v0.2.0)</title>
 
 <link href="./fonts.css" rel="stylesheet">
 <link href="./rdoc.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 
 <body id="top" class="table-of-contents">
 <main role="main">
-<h1 class="class">Table of Contents - libcdb-ruby Application documentation (v0.1.1)</h1>
+<h1 class="class">Table of Contents - libcdb-ruby Application documentation (v0.2.0)</h1>
 
 <h2 id="pages">Pages</h2>
 <ul>
@@ -39,12 +39,13 @@
 
     <ul>
       <li><a href="ChangeLog.html#label-Revision+history+for+libcdb-ruby">Revision history for libcdb-ruby</a>
-      <li><a href="ChangeLog.html#label-0.1.1+%5B2014-04-25%5D">0.1.1 [2014-04-25]</a>
-      <li><a href="ChangeLog.html#label-0.1.0+%5B2013-08-03%5D">0.1.0 [2013-08-03]</a>
-      <li><a href="ChangeLog.html#label-0.0.4+%5B2012-08-09%5D">0.0.4 [2012-08-09]</a>
-      <li><a href="ChangeLog.html#label-0.0.3+%5B2012-04-02%5D">0.0.3 [2012-04-02]</a>
-      <li><a href="ChangeLog.html#label-0.0.2+%5B2012-01-20%5D">0.0.2 [2012-01-20]</a>
-      <li><a href="ChangeLog.html#label-0.0.1+%5B2012-01-12%5D">0.0.1 [2012-01-12]</a>
+      <li><a href="ChangeLog.html#label-0.2.0+-5B2014-12-05-5D">0.2.0 [2014-12-05]</a>
+      <li><a href="ChangeLog.html#label-0.1.1+-5B2014-04-25-5D">0.1.1 [2014-04-25]</a>
+      <li><a href="ChangeLog.html#label-0.1.0+-5B2013-08-03-5D">0.1.0 [2013-08-03]</a>
+      <li><a href="ChangeLog.html#label-0.0.4+-5B2012-08-09-5D">0.0.4 [2012-08-09]</a>
+      <li><a href="ChangeLog.html#label-0.0.3+-5B2012-04-02-5D">0.0.3 [2012-04-02]</a>
+      <li><a href="ChangeLog.html#label-0.0.2+-5B2012-01-20-5D">0.0.2 [2012-01-20]</a>
+      <li><a href="ChangeLog.html#label-0.0.1+-5B2012-01-12-5D">0.0.1 [2012-01-12]</a>
     </ul>
   </li>
     <li class="file">
@@ -136,14 +137,14 @@
     <span class="container">LibCDB::CDB</span>
 
   <li class="method">
-    <a href="LibCDB/CDB/Writer.html#method-i-close">#close</a>
-    &mdash;
-    <span class="container">LibCDB::CDB::Writer</span>
-
-  <li class="method">
     <a href="LibCDB/CDB/Reader.html#method-i-close">#close</a>
     &mdash;
     <span class="container">LibCDB::CDB::Reader</span>
+
+  <li class="method">
+    <a href="LibCDB/CDB/Writer.html#method-i-close">#close</a>
+    &mdash;
+    <span class="container">LibCDB::CDB::Writer</span>
 
   <li class="method">
     <a href="LibCDB/CDB.html#method-i-close_read">#close_read</a>
@@ -156,11 +157,6 @@
     <span class="container">LibCDB::CDB</span>
 
   <li class="method">
-    <a href="LibCDB/CDB/Reader.html#method-i-closed-3F">#closed?</a>
-    &mdash;
-    <span class="container">LibCDB::CDB::Reader</span>
-
-  <li class="method">
     <a href="LibCDB/CDB/Writer.html#method-i-closed-3F">#closed?</a>
     &mdash;
     <span class="container">LibCDB::CDB::Writer</span>
@@ -169,6 +165,11 @@
     <a href="LibCDB/CDB.html#method-i-closed-3F">#closed?</a>
     &mdash;
     <span class="container">LibCDB::CDB</span>
+
+  <li class="method">
+    <a href="LibCDB/CDB/Reader.html#method-i-closed-3F">#closed?</a>
+    &mdash;
+    <span class="container">LibCDB::CDB::Reader</span>
 
   <li class="method">
     <a href="LibCDB/CDB.html#method-i-closed_read-3F">#closed_read?</a>
@@ -286,6 +287,16 @@
     <span class="container">LibCDB::CDB::Reader</span>
 
   <li class="method">
+    <a href="LibCDB/CDB.html#method-i-load">#load</a>
+    &mdash;
+    <span class="container">LibCDB::CDB</span>
+
+  <li class="method">
+    <a href="LibCDB/CDB.html#method-i-load_file">#load_file</a>
+    &mdash;
+    <span class="container">LibCDB::CDB</span>
+
+  <li class="method">
     <a href="LibCDB/CDB/Reader.html#method-i-member-3F">#member?</a>
     &mdash;
     <span class="container">LibCDB::CDB::Reader</span>
@@ -302,6 +313,11 @@
 
   <li class="method">
     <a href="LibCDB/CDB.html#method-i-open_write">#open_write</a>
+    &mdash;
+    <span class="container">LibCDB::CDB</span>
+
+  <li class="method">
+    <a href="LibCDB/CDB.html#method-i-print_stats">#print_stats</a>
     &mdash;
     <span class="container">LibCDB::CDB</span>
 
@@ -336,19 +352,24 @@
     <span class="container">LibCDB::CDB::Reader</span>
 
   <li class="method">
+    <a href="LibCDB/CDB.html#method-i-stats">#stats</a>
+    &mdash;
+    <span class="container">LibCDB::CDB</span>
+
+  <li class="method">
     <a href="LibCDB/CDB/Writer.html#method-i-store">#store</a>
     &mdash;
     <span class="container">LibCDB::CDB::Writer</span>
 
   <li class="method">
-    <a href="LibCDB/CDB/Reader.html#method-i-to_a">#to_a</a>
-    &mdash;
-    <span class="container">LibCDB::CDB::Reader</span>
-
-  <li class="method">
     <a href="LibCDB/CDB/Version.html#method-i-to_a">#to_a</a>
     &mdash;
     <span class="container">LibCDB::CDB::Version</span>
+
+  <li class="method">
+    <a href="LibCDB/CDB/Reader.html#method-i-to_a">#to_a</a>
+    &mdash;
+    <span class="container">LibCDB::CDB::Reader</span>
 
   <li class="method">
     <a href="LibCDB/CDB/Reader.html#method-i-to_h">#to_h</a>
@@ -395,7 +416,7 @@
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.2.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
