@@ -4,6 +4,7 @@
 
 == 0.2.0 [unreleased]
 
+* Added encoding support to LibCDB::CDB::Reader.
 * Added LibCDB::CDB.load and LibCDB::CDB.load_file to create a database from a
   dump.
 * Added LibCDB::CDB.stats and LibCDB::CDB.print_stats to collect stats from a

@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 describe LibCDB::CDB::Reader do
 
   rbx = lambda { |msg| "Rubinius: #{msg}" if RUBY_ENGINE == 'rbx' }
@@ -104,6 +106,10 @@ describe LibCDB::CDB::Reader do
       @db.should have_key('k3')
     end
 
+    it 'should know if it has a wide-char key', skip: rbx['key not found'] do
+      @db.should have_key('€ürö')
+    end
+
     it "should know if it doesn't have a key", skip: metadata[:skip_rbx] do
       @db.should_not have_key('none')
     end
@@ -112,12 +118,20 @@ describe LibCDB::CDB::Reader do
       @db.should have_value('v3.2')
     end
 
+    it 'should know if it has a wide-char value', skip: rbx['value not found'] do
+      @db.should have_value('½a×¾b')
+    end
+
     it "should know if it doesn't have a value", skip: metadata[:skip_rbx] do
       @db.should_not have_value('none')
     end
 
     it 'should get a single value', skip: metadata[:skip_rbx] do
       @db['k1'].should == 'v1.1'
+    end
+
+    it 'should get a single wide-char value', skip: metadata[:skip_rbx] do
+      @db['€ürö'].should == '½a×¾b'
     end
 
     it 'should not get non-existent value', skip: metadata[:skip_rbx] do
@@ -146,18 +160,28 @@ describe LibCDB::CDB::Reader do
       @db.key('v3.2').should == 'k3'
     end
 
+    it 'should find the key for a wide-char value', skip: rbx['the VM is exiting improperly'] do
+      @db.key('½a×¾b').should == '€ürö'
+    end
+
     it 'should not find the key for a non-existent value', skip: metadata[:skip_rbx] do
       @db.key('none').should be_nil
     end
 
     it 'should dump itself', skip: rbx['no block given'] do
-      @db.dump.should == File.binread(data('test.dump'))
+      @db.dump.should == File.read(data('test.dump'))
     end
 
     it 'should dump records for key', skip: rbx['no block given'] do
       d = []
       @db.each_dump('k3') { |e| d << e }
       d.should == %w[+2,4:k3->v3.1 +2,4:k3->v3.2 +2,4:k3->v3.3]
+    end
+
+    it 'should dump records for wide-char key', skip: rbx['no block given'] do
+      d = []
+      @db.each_dump('€ürö') { |e| d << e }
+      d.should == %w[+8,8:€ürö->½a×¾b]
     end
 
     it 'should convert itself into a hash', skip: metadata[:skip_rbx] do

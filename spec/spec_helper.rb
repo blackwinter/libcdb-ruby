@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 $:.unshift('lib') unless $:.first == 'lib'
 
 require 'libcdb'
@@ -14,7 +16,9 @@ RSpec.configure { |config|
       1.upto(i) { |j| v << "v#{i}.#{j}" }
     }
 
-    TEST_DATA['a' * 1024] = Array('b' * 1024 ** 2)
+    TEST_DATA['€ürö'] = ['½a×¾b']
+
+    TEST_DATA['a' * 1024] = ['b' * 1024 ** 2]
 
     def tempfile
       Tempfile.open("libcdb_spec_#{object_id}_temp")
@@ -30,3 +34,8 @@ RSpec.configure { |config|
     end
   })
 }
+
+class String
+  alias_method :_original_inspect, :inspect
+  def inspect; size > 100 ? "#{self.class}(#{size})" : _original_inspect; end
+end

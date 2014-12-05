@@ -255,11 +255,11 @@ module LibCDB
     end
 
     def_delegators :reader, :[], :dump, :each, :each_dump, :each_key,
-                            :each_value, :empty?, :fetch, :fetch_all,
-                            :fetch_first, :fetch_last, :get, :has_key?,
-                            :has_value?, :include?, :key, :key?, :keys,
-                            :length, :member?, :rget, :size, :to_a,
-                            :to_h, :total, :value?, :values, :values_at
+                            :each_value, :empty?, :encoding, :encoding=,
+                            :fetch, :fetch_all, :fetch_first, :fetch_last,
+                            :get, :has_key?, :has_value?, :include?, :key,
+                            :key?, :keys, :length, :member?, :rget, :size,
+                            :to_a, :to_h, :total, :value?, :values, :values_at
 
     def_delegators :writer, :<<, :[]=, :add, :insert, :replace, :store
 

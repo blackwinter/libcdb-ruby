@@ -25,6 +25,7 @@ rcdb_reader_closed_p(VALUE self) {
 static VALUE
 rcdb_reader_initialize(VALUE self, VALUE io) {
   RCDB_INITIALIZE(read, READ, cdb, init)
+  rb_iv_set(self, "@encoding", rb_enc_default_external());
   return self;
 }
 
@@ -153,7 +154,7 @@ rcdb_reader_each(int argc, VALUE *argv, VALUE self) {
     }
 
     while (cdb_findnext(&cdbf) > 0) {
-      rb_yield(rcdb_reader_read_data(cdb));
+      rb_yield(RCDB_READER_READ(data));
     }
   }
   else {
@@ -161,8 +162,8 @@ rcdb_reader_each(int argc, VALUE *argv, VALUE self) {
 
     while (cdb_seqnext(&cdbp, cdb) > 0) {
       rb_yield(rb_ary_new3(2,
-        rcdb_reader_read_key(cdb),
-        rcdb_reader_read_data(cdb)));
+        RCDB_READER_READ(key),
+        RCDB_READER_READ(data)));
     }
   }
 
@@ -215,7 +216,7 @@ rcdb_reader_each_key(VALUE self) {
   cdb_seqinit(&cdbp, cdb);
 
   while (cdb_seqnext(&cdbp, cdb) > 0) {
-    if (NIL_P(rb_hash_lookup(hash, key = rcdb_reader_read_key(cdb)))) {
+    if (NIL_P(rb_hash_lookup(hash, key = RCDB_READER_READ(key)))) {
       rb_hash_aset(hash, key, Qtrue);
       rb_yield(key);
     }
@@ -242,7 +243,7 @@ rcdb_reader_each_value(VALUE self) {
   cdb_seqinit(&cdbp, cdb);
 
   while (cdb_seqnext(&cdbp, cdb) > 0) {
-    rb_yield(rcdb_reader_read_data(cdb));
+    rb_yield(RCDB_READER_READ(data));
   }
 
   return self;
@@ -276,7 +277,7 @@ rcdb_reader_fetch_first(VALUE self, VALUE key) {
   RCDB_READER_GET(self, cdb);
 
   if (cdb_find(cdb, RSTRING_PTR(key), RSTRING_LEN(key)) > 0) {
-    val = rcdb_reader_read_data(cdb);
+    val = RCDB_READER_READ(data);
   }
 
   return val;
@@ -512,6 +513,8 @@ rcdb_init_reader(void) {
   cCDBReader = rb_define_class_under(cCDB, "Reader", rb_cObject);
   rb_define_alloc_func(cCDBReader, rcdb_reader_alloc);
   rb_include_module(cCDBReader, rb_mEnumerable);
+
+  rb_define_attr(cCDBReader, "encoding", 1, 1);
 
   rb_define_method(cCDBReader, "close",       rcdb_reader_close,        0);
   rb_define_method(cCDBReader, "closed?",     rcdb_reader_closed_p,     0);
