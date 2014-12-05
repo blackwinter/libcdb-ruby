@@ -185,6 +185,8 @@ rcdb_reader_each_dump(int argc, VALUE *argv, VALUE self) {
   RCDB_RETURN_ENUMERATOR(1);
 
   if (rb_scan_args(argc, argv, "01", &key) == 1 && !NIL_P(key)) {
+    StringValue(key);
+
     RCDB_READER_ITERATE0(each, yield_dump2, rb_ary_new3(1, key))
   }
   else {
