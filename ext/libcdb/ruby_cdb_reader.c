@@ -310,9 +310,7 @@ rcdb_reader_fetch_last(VALUE self, VALUE key) {
   }
 
   if (pos > 0) {
-    val = rb_str_buf_new(len);
-    cdb_read(cdb, RSTRING_PTR(val), len, pos);
-    rb_str_set_len(val, len);
+    RCDB_READER_READ_POS(pos)
   }
 
   return val;

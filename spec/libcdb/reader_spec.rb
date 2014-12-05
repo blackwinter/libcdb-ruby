@@ -145,13 +145,15 @@ describe LibCDB::CDB::Reader do
     end
 
     it 'should get all values' do
-      TEST_DATA.each { |k, o|
-        @db.fetch(k).should == o
-      }
+      TEST_DATA.each { |k, o| @db.fetch(k).should == o }
     end
 
-    it 'should get last value' do
-      @db.fetch_last('k10').should == 'v10.10'
+    it 'should get first values' do
+      TEST_DATA.each { |k, o| @db.fetch_first(k).should == Array(o).first }
+    end
+
+    it 'should get last values' do
+      TEST_DATA.each { |k, o| @db.fetch_last(k).should == Array(o).last }
     end
 
     it 'should find the key for a value' do

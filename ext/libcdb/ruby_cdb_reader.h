@@ -28,18 +28,24 @@
 
 #define RCDB_READER_DEFINE_READ(what) \
 static VALUE \
-rcdb_reader_read_##what(struct cdb *cdb) {\
+rcdb_reader_read_##what(struct cdb *cdb, VALUE self) {\
   size_t len = cdb_##what##len(cdb);\
-  VALUE ret = rb_str_buf_new(len);\
+  VALUE val;\
 \
-  cdb_read(cdb, RSTRING_PTR(ret), len, cdb_##what##pos(cdb));\
-  rb_str_set_len(ret, len);\
+  RCDB_READER_READ_POS(cdb_##what##pos(cdb))\
 \
-  return ret;\
+  return val;\
 }
 
-#define RCDB_READER_READ(what) rb_funcall(rcdb_reader_read_##what(cdb),\
-  rb_intern("force_encoding"), 1, rb_iv_get(self, "@encoding"))
+#define RCDB_READER_READ_POS(pos) \
+  val = rb_str_buf_new(len);\
+\
+  cdb_read(cdb, RSTRING_PTR(val), len, pos);\
+  rb_str_set_len(val, len);\
+\
+  rb_funcall(val, rb_intern("force_encoding"), 1, rb_iv_get(self, "@encoding"));
+
+#define RCDB_READER_READ(what) rcdb_reader_read_##what(cdb, self)
 
 #define RCDB_READER_STRING_LEN(str) \
   rb_funcall(LONG2NUM(RSTRING_LEN(str)), rb_intern("to_s"), 0)
