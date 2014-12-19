@@ -1,6 +1,7 @@
 begin
   require "libcdb/#{RUBY_VERSION[/\d+.\d+/]}/libcdb_ruby"
-rescue LoadError
+rescue LoadError => err
+  raise unless err.path
   require 'libcdb/libcdb_ruby'
 end
 
