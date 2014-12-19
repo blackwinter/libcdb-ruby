@@ -3,17 +3,6 @@ require_relative 'lib/libcdb/version'
 begin
   require 'hen'
 
-  cco = []
-
-  if dir = ENV['TINYCDB']
-    cco << "--with-cdb-include=#{dir}"
-    cco << "--with-cdb-lib=#{dir}"
-  end
-
-  if dir = ENV['MINGW32']
-    cco << %Q{--with-cflags="-I#{dir}/include -L#{dir}/lib"}
-  end
-
   Hen.lay! {{
     gem: {
       name:      %q{libcdb-ruby},
@@ -23,7 +12,7 @@ begin
       email:     %q{jens.wille@gmail.com},
       license:   %q{AGPL-3.0},
       homepage:  :blackwinter,
-      extension: { cross_config_options: cco },
+      extension: { with_cross_cdb: lambda { |dir| [dir] } },
 
       required_ruby_version: '>= 1.9.3'
     }
