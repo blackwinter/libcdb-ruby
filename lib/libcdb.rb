@@ -186,7 +186,9 @@ module LibCDB
           puts 'number of records: %d'                    % r
           puts 'key min/avg/max length: %d/%d/%d'         % k.values_at(*v1)
           puts 'val min/avg/max length: %d/%d/%d'         % v.values_at(*v1)
-          next # TODO: hash table stats
+
+          # TODO: hash table stats
+=begin
           puts 'hash tables/entries/collisions: %d/%d/%d' % h.values_at(*v2)
           puts 'hash table min/avg/max length: %d/%d/%d'  % h.values_at(*v1)
           puts 'hash table distances:'
@@ -194,6 +196,7 @@ module LibCDB
           d = h[:distances]
           0.upto(9) { |i| puts ' d%d: %6d %2d%%' % [i, *d[i]] }
           puts ' >9: %6d %2d%%' % d[-1]
+=end
         }
       end
 
