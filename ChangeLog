@@ -2,6 +2,10 @@
 
 = Revision history for libcdb-ruby
 
+== 0.2.1 [2016-04-19]
+
+* Housekeeping.
+
 == 0.2.0 [2014-12-05]
 
 * Added encoding support to LibCDB::CDB::Reader.
