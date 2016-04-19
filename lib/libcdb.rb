@@ -206,9 +206,9 @@ module LibCDB
       # Prints the #stats on +path+.
       def print_stats(path)
         stats(path).tap { |s|
-          r, k, v, h = s.values_at(:records, :keys, :values, :hash)
+          r, k, v, _h = s.values_at(:records, :keys, :values, :hash)
 
-          v1, v2 = [:min, :avg, :max], [:tables, :entries, :collisions]
+          v1, _v2 = [:min, :avg, :max], [:tables, :entries, :collisions]
 
           puts 'number of records: %d'                    % r
           puts 'key min/avg/max length: %d/%d/%d'         % k.values_at(*v1)
